@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "362841653058",
+    "project_id": "tuffygo-cf071",
+    "storage_bucket": "tuffygo-cf071.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:362841653058:android:8900ba592ad156edea12db",
+        "android_client_info": {
+          "package_name": "com.tuffygo.user"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCxKb3MZeh4T-GFmJMsLcsh2V1ldvapO30"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
