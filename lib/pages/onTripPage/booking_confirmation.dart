@@ -1414,6 +1414,8 @@ class _BookingConfirmationState extends State<BookingConfirmation>
                                           tripReqError == false &&
                                           dropConfirmed == true &&
                                           lowWalletBalance == false)
+
+                                  //bottom container || bottom slide || bottom sheet
                                       ? Positioned(
                                           bottom: 0 +
                                               MediaQuery.of(context)
@@ -1429,7 +1431,7 @@ class _BookingConfirmationState extends State<BookingConfirmation>
                                             height:
                                                 (bottomChooseMethod == false &&
                                                         widget.type != 1)
-                                                    ? media.width * 1
+                                                    ? media.width * .9
                                                     : (bottomChooseMethod ==
                                                                 false &&
                                                             widget.type == 1)
@@ -1447,7 +1449,7 @@ class _BookingConfirmationState extends State<BookingConfirmation>
                                             child: Column(
                                               children: [
                                                 SizedBox(
-                                                  height: media.width * 0.02,
+                                                  height: media.width * 0.03,
                                                 ),
                                                 SizedBox(
                                                   width: media.width * 1,
@@ -1676,14 +1678,16 @@ class _BookingConfirmationState extends State<BookingConfirmation>
                                                                                               height: media.width * 0.157,
                                                                                               decoration: BoxDecoration(
                                                                                                 borderRadius: BorderRadius.circular(12),
-                                                                                                boxShadow: [
-                                                                                                  BoxShadow(color: (isDarkTheme == true) ? Colors.white.withOpacity(0.2) : Colors.black.withOpacity(0.2), spreadRadius: 2, blurRadius: 2)
-                                                                                                ],
-                                                                                                color: (choosenVehicle != i)
-                                                                                                    ? (isDarkTheme == true)
-                                                                                                        ? Colors.black
-                                                                                                        : Colors.white
-                                                                                                    : const Color.fromARGB(255, 174, 172, 172),
+                                                                                                // boxShadow: [
+                                                                                                //   BoxShadow(color: (isDarkTheme == true) ? Colors.white.withOpacity(0.2) : Colors.black.withOpacity(0.2), spreadRadius: 2, blurRadius: 2)
+                                                                                                // ],
+                                                                                                 color: Colors.white12
+
+                                                                                                // (choosenVehicle != i)
+                                                                                                //     ? (isDarkTheme == true)
+                                                                                                //         ? Colors.black
+                                                                                                //         : Colors.white
+                                                                                                //     : const Color.fromARGB(255, 174, 172, 172),
                                                                                               ),
                                                                                               child: Row(
                                                                                                 children: [
@@ -1691,11 +1695,13 @@ class _BookingConfirmationState extends State<BookingConfirmation>
                                                                                                   SizedBox(
                                                                                                     width: 8,
                                                                                                   ),
+
+                                                                                                  //Icon of cars
                                                                                                   
                                                                                                   Container(
                                                                                                     height:24,
                                                                                                     width: 24,
-                                                                                                    child: (etaDetails[i] == 0) ? Image.asset('assets/images/1.png') : Image.asset('assets/images/2.png'),
+                                                                                                    child:  Image.asset('assets/images/1.png') ,
                                                                                                   ),
 
                                                                                                   // (etaDetails[i]['icon'] != null)
@@ -1717,11 +1723,14 @@ class _BookingConfirmationState extends State<BookingConfirmation>
                                                                                                           style: GoogleFonts.notoSans(
                                                                                                               fontSize: media.width * fourteen,
                                                                                                               fontWeight: FontWeight.w600,
-                                                                                                              color: (choosenVehicle != i)
-                                                                                                                  ? (isDarkTheme == true)
-                                                                                                                      ? hintColor
-                                                                                                                      : textColor
-                                                                                                                  : Colors.white)),
+                                                                                                              color: Colors.white,
+                                                                                                              // (choosenVehicle != i)
+                                                                                                              //     ? (isDarkTheme == true)
+                                                                                                              //         ? hintColor
+                                                                                                              //         : textColor
+                                                                                                              //     : Colors.white
+                                                                                                          )
+                                                                                                      ),
                                                                                                       // Row(
                                                                                                       //   children: [
                                                                                                       //     Icon(
@@ -1766,6 +1775,9 @@ class _BookingConfirmationState extends State<BookingConfirmation>
                                                                                                       // ),
                                                                                                     ],
                                                                                                   ),
+
+                                                                                                  // Price of rides
+
                                                                                                   (widget.type != 2)
                                                                                                       ? Expanded(
                                                                                                           child: (etaDetails[i]['has_discount'] != true)
@@ -1773,21 +1785,24 @@ class _BookingConfirmationState extends State<BookingConfirmation>
                                                                                                                   mainAxisAlignment: MainAxisAlignment.end,
                                                                                                                   children: [
                                                                                                                     Text(
-                                                                                                                      // '${(isOutStation && daysDifferenceRoundedUp == 0) ?
-                                                                                                                      etaDetails[i]['total'].toStringAsFixed(2)
-                                                                                                                          // : (daysDifferenceRoundedUp != 0) ? (double.parse(etaDetails[i]['total'].toString()) * daysDifferenceRoundedUp).toStringAsFixed(2) : etaDetails[i]['total'].toStringAsFixed(2)} ${etaDetails[i]['currency']}'
+                                                                                                                          etaDetails[i]['currency']
+                                                                                                                      + ' '  +
+                                                                                                          // '${(isOutStation && daysDifferenceRoundedUp == 0) ?
+                                                                                                          etaDetails[i]['total'].toStringAsFixed(2)
+                                                                                                          // : (daysDifferenceRoundedUp != 0) ? (double.parse(etaDetails[i]['total'].toString()) * daysDifferenceRoundedUp).toStringAsFixed(2) : etaDetails[i]['total'].toStringAsFixed(2)} ${etaDetails[i]['currency']}'
 
-                                                                                                                          // daysDifferenceRoundedUp    etaDetails[i]['total'].toStringAsFixed(2) +
-                                                                                                                          +
-                                                                                                                          etaDetails[i]['currency'],
+                                                                                                          // daysDifferenceRoundedUp    etaDetails[i]['total'].toStringAsFixed(2)
+                                                                                                          ,
                                                                                                                       style: GoogleFonts.notoSans(
                                                                                                                           fontSize: media.width * fourteen,
                                                                                                                           fontWeight: FontWeight.w600,
-                                                                                                                          color: (choosenVehicle != i)
-                                                                                                                              ? (isDarkTheme == true)
-                                                                                                                                  ? Colors.white
-                                                                                                                                  : textColor
-                                                                                                                              : Colors.black),
+                                                                                                                          color: Colors.white,
+                                                                                                                          // (choosenVehicle != i)
+                                                                                                                          //     ? (isDarkTheme == true)
+                                                                                                                          //         ? Colors.white
+                                                                                                                          //         : textColor
+                                                                                                                          //     : Colors.black
+                                                                                                                      ),
                                                                                                                     ),
                                                                                                                   ],
                                                                                                                 )
@@ -1836,6 +1851,58 @@ class _BookingConfirmationState extends State<BookingConfirmation>
                                                                               })
                                                                               .values
                                                                               .toList(),
+                                                                        ),
+                                                                        //pro rider
+                                                                        Container(
+                                                                          padding: EdgeInsets.all(media.width * 0.02),
+                                                                          margin: EdgeInsets.only(top: 10, left: media.width * 0.05, right: media.width * 0.05),
+                                                                          height: media.width * 0.157,
+                                                                          decoration: BoxDecoration(
+                                                                            borderRadius: BorderRadius.circular(12),
+                                                                            boxShadow: [
+                                                                              BoxShadow(color: (isDarkTheme == true) ? Colors.white.withOpacity(0.1) : Colors.black.withOpacity(0.21), spreadRadius: 1.5, blurRadius: 1.5)
+                                                                            ],
+                                                                            color: Colors.black38,
+                                                                          ),
+                                                                          child: Row(
+                                                                            children: [
+
+                                                                              SizedBox(
+                                                                                width: media.width * 0.02,
+                                                                              ),
+
+                                                                              SizedBox(
+                                                                                height:24,
+                                                                                width: 24,
+                                                                                child: Image.asset('assets/images/crown.png'),
+                                                                              ),
+
+                                                                              SizedBox(
+                                                                                width: media.width * 0.05,
+                                                                              ),
+
+                                                                              Text('Pro Booking',
+                                                                                  style:GoogleFonts.notoSans(
+                                                                                      fontSize: media.width * fourteen,
+                                                                                      fontWeight: FontWeight.w600,
+                                                                                      color: Colors.white
+                                                                                  )),
+
+                                                                              //  SizedBox(
+                                                                              //      width: media
+                                                                              //          .width *
+                                                                              //              .35,),
+                                                                              //
+                                                                              // Text('₹ 180',
+                                                                              //     style:GoogleFonts.notoSans(
+                                                                              //         fontSize: media.width * fourteen,
+                                                                              //         fontWeight: FontWeight.w600,
+                                                                              //         color: Colors.white
+                                                                              //     )),
+
+
+                                                                            ],
+                                                                          ),
                                                                         ),
                                                                       ],
                                                                     ))),
@@ -2124,6 +2191,15 @@ class _BookingConfirmationState extends State<BookingConfirmation>
                                                                 )),
                                                           )
                                                         : Container(),
+
+                                                SizedBox(
+                                                  height: media.width * 0.02,
+                                                ),
+
+
+                                                SizedBox(
+                                                  height: media.width * 0.02,
+                                                ),
                                                 SizedBox(
                                                   height: media.width * 0.02,
                                                 ),
@@ -4495,24 +4571,22 @@ class _BookingConfirmationState extends State<BookingConfirmation>
                                                 media.width * 0.05),
                                             child: Column(
                                               children: [
-                                                SizedBox(
-                                                  width: media.width * 0.9,
-                                                  child: MyText(
-                                                    text: languages[
-                                                            choosenLanguage]
-                                                        ['text_search_captain'],
-                                                    size:
-                                                        media.width * fourteen,
-                                                    fontweight: FontWeight.bold,
-                                                  ),
-                                                ),
+                                                // SizedBox(
+                                                //   width: media.width * 0.9,
+                                                //   child: MyText(
+                                                //     text: languages[
+                                                //             choosenLanguage]
+                                                //         ['text_search_captain'],
+                                                //     size:
+                                                //         media.width * fourteen,
+                                                //     fontweight: FontWeight.bold,
+                                                //   ),
+                                                // ),
                                                 SizedBox(
                                                   height: media.height * 0.02,
                                                 ),
                                                 MyText(
-                                                  text: languages[
-                                                          choosenLanguage]
-                                                      ['text_finddriverdesc'],
+                                                  text: 'Hold Tight Connecting to Captains....',
                                                   size: media.width * fourteen,
                                                   // textAlign: TextAlign.center,
                                                 ),
@@ -4520,24 +4594,25 @@ class _BookingConfirmationState extends State<BookingConfirmation>
                                                   height: media.height * 0.02,
                                                 ),
                                                 SizedBox(
-                                                  height: media.width * 0.4,
+                                                  height: media.width * 0.3,
+                                                  width: media.width * 0.6,
                                                   child: Image.asset(
-                                                    'assets/images/ridesearching.png',
-                                                    fit: BoxFit.contain,
+                                                    'assets/images/logo.png',
+                                                    fit: BoxFit.fill,
                                                   ),
                                                 ),
                                                 SizedBox(
                                                   height: media.height * 0.02,
                                                 ),
                                                 Container(
-                                                  height: media.width * 0.048,
+                                                  height: media.width * 0.01,
                                                   width: media.width * 0.9,
                                                   decoration: BoxDecoration(
                                                       borderRadius:
                                                           BorderRadius.circular(
                                                               media.width *
                                                                   0.024),
-                                                      color: Colors.grey),
+                                                      color: Colors.white24),
                                                   alignment:
                                                       Alignment.centerLeft,
                                                   child: Container(
@@ -4556,27 +4631,37 @@ class _BookingConfirmationState extends State<BookingConfirmation>
                                                         color: buttonColor),
                                                   ),
                                                 ),
+                                                // SizedBox(
+                                                //   height: media.height * 0.01,
+                                                // ),
+                                                // Row(
+                                                //   mainAxisAlignment:
+                                                //       MainAxisAlignment.end,
+                                                //   children: [
+                                                //     (timing != null)
+                                                //         ? Text(
+                                                //             '${Duration(seconds: timing).toString().substring(3, 7)} mins',
+                                                //             style: GoogleFonts.notoSans(
+                                                //                 fontSize: media
+                                                //                         .width *
+                                                //                     ten,
+                                                //                 color: textColor
+                                                //                     .withOpacity(
+                                                //                         0.4)),
+                                                //           )
+                                                //         : Container()
+                                                //   ],
+                                                // ),
+
                                                 SizedBox(
-                                                  height: media.height * 0.02,
+                                                  height: media.height * 0.01,
                                                 ),
-                                                Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.end,
-                                                  children: [
-                                                    (timing != null)
-                                                        ? Text(
-                                                            '${Duration(seconds: timing).toString().substring(3, 7)} mins',
-                                                            style: GoogleFonts.notoSans(
-                                                                fontSize: media
-                                                                        .width *
-                                                                    ten,
-                                                                color: textColor
-                                                                    .withOpacity(
-                                                                        0.4)),
-                                                          )
-                                                        : Container()
-                                                  ],
-                                                ),
+                                                Text('Booking in pro mode is 20X faster....',
+                                                    style:GoogleFonts.notoSans(
+                                                  color:Colors.white24,
+                                                      fontSize: 16
+
+                                                )),
                                                 SizedBox(
                                                   height: media.height * 0.02,
                                                 ),
