@@ -218,20 +218,18 @@ class _LoadingPageState extends State<LoadingPage> {
         body: Stack(
           children: [
             Container(
-              height: media.height * 1,
-              width: media.width * 1,
+
               decoration: BoxDecoration(color: page),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Container(
-                    padding: EdgeInsets.all(media.width * 0.01),
-                    width: media.width * 0.6,
-                    height: media.width * 0.5,
+
+
                     decoration: const BoxDecoration(
                         image: DecorationImage(
-                            image: AssetImage('assets/images/logo.png'),
-                            fit: BoxFit.contain)),
+                            image: AssetImage('assets/images/0213.gif'),
+                            fit: BoxFit.cover)),
                   ),
                 ],
               ),

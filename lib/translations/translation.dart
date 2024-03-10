@@ -24,7 +24,7 @@ Map<String, dynamic> languages = {
     "text_phone_verify": "Phone Verification",
     "text_enter_otp": "Please enter the 6-digit code send to you at",
     "text_resend_code": "Resend Code",
-    "text_verify": "Verify Now",
+    "text_verify": "Verify OTP",
     "text_pick_up_location": "Pick up Location",
     "text_drop": "Drop Location",
     "text_daily": "Daily",
@@ -391,7 +391,7 @@ Map<String, dynamic> languages = {
     "text_enter_phone_number": "Enter The Phone Number",
     "text_help": "Help",
     "text_you_contact": "You Can Contact Us",
-    "text_what_mobilenum": "What's your mobile number ?",
+    "text_what_mobilenum": "Enter Your Phone Number:",
     "text_you_get_otp": "You will get a sms for Verification",
     "text_send_otp": "Enter the OTP number send to you at",
     "text_your_name": "what's your name?",
@@ -462,7 +462,7 @@ Map<String, dynamic> languages = {
     "text_thanks_feedback":
         "This feedback is important in helping us keep\u000bOur App Community safe and secure for everyone",
     "text_enter_otp_at": "Enter the OTP number send to you at ",
-    "text_resend_otp": "Resend OTP Number",
+    "text_resend_otp": "Resend OTP",
     "text_have_issue": "Have Issue",
     "text_loc_perm_1": "Most Trusted app",
     "text_loc_perm_2":

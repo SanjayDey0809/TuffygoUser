@@ -101,7 +101,7 @@ class _NamePageState extends State<NamePage> {
                                                   image: (proImageFile == null)
                                                       ? const DecorationImage(
                                                           image: AssetImage(
-                                                            'assets/images/default-profile-picture.jpeg',
+                                                            'assets/images/profile.png',
                                                           ),
                                                           fit: BoxFit.cover)
                                                       : DecorationImage(
