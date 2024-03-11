@@ -825,51 +825,51 @@ class _MapsState extends State<Maps>
                                                               )
                                                             : Image.asset(
                                                                 'assets/images/dropmarker.png'))),
-                                                Positioned(
-                                                  right: 10,
-                                                  top: 120,
-                                                  child: InkWell(
-                                                    onTap: () async {
-                                                      if (contactus == false) {
-                                                        setState(() {
-                                                          contactus = true;
-                                                        });
-                                                      } else {
-                                                        setState(() {
-                                                          contactus = false;
-                                                        });
-                                                      }
-                                                    },
-                                                    child: Container(
-                                                      height: media.width * 0.1,
-                                                      width: media.width * 0.1,
-                                                      decoration: BoxDecoration(
-                                                          boxShadow: [
-                                                            BoxShadow(
-                                                                blurRadius: 2,
-                                                                color: Colors
-                                                                    .black
-                                                                    .withOpacity(
-                                                                        0.2),
-                                                                spreadRadius: 2)
-                                                          ],
-                                                          color: page,
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(media
-                                                                          .width *
-                                                                      0.02)),
-                                                      alignment:
-                                                          Alignment.center,
-                                                      child: Image.asset(
-                                                          'assets/images/customercare.png',
-                                                          fit: BoxFit.contain,
-                                                          width: media.width *
-                                                              0.06,
-                                                          color: textColor),
-                                                    ),
-                                                  ),
-                                                ),
+                                                // Positioned(
+                                                //   right: 10,
+                                                //   top: 120,
+                                                //   child: InkWell(
+                                                //     onTap: () async {
+                                                //       if (contactus == false) {
+                                                //         setState(() {
+                                                //           contactus = true;
+                                                //         });
+                                                //       } else {
+                                                //         setState(() {
+                                                //           contactus = false;
+                                                //         });
+                                                //       }
+                                                //     },
+                                                //     child: Container(
+                                                //       height: media.width * 0.1,
+                                                //       width: media.width * 0.1,
+                                                //       decoration: BoxDecoration(
+                                                //           boxShadow: [
+                                                //             BoxShadow(
+                                                //                 blurRadius: 2,
+                                                //                 color: Colors
+                                                //                     .black
+                                                //                     .withOpacity(
+                                                //                         0.2),
+                                                //                 spreadRadius: 2)
+                                                //           ],
+                                                //           color: page,
+                                                //           borderRadius:
+                                                //               BorderRadius
+                                                //                   .circular(media
+                                                //                           .width *
+                                                //                       0.02)),
+                                                //       alignment:
+                                                //           Alignment.center,
+                                                //       child: Image.asset(
+                                                //           'assets/images/customercare.png',
+                                                //           fit: BoxFit.contain,
+                                                //           width: media.width *
+                                                //               0.06,
+                                                //           color: textColor),
+                                                //     ),
+                                                //   ),
+                                                // ),
                                                 (contactus == true)
                                                     ? Positioned(
                                                         right: 10,
@@ -992,83 +992,83 @@ class _MapsState extends State<Maps>
                                                         ),
                                                       )
                                                     : Container(),
-                                                Positioned(
-                                                  right: 10,
-                                                  top: 155 + media.width * 0.35,
-                                                  child: InkWell(
-                                                    onTap: () async {
-                                                      if (locationAllowed ==
-                                                          true) {
-                                                        if (currentLocation !=
-                                                            null) {
-                                                          _controller?.animateCamera(
-                                                              CameraUpdate
-                                                                  .newLatLngZoom(
-                                                                      currentLocation,
-                                                                      18.0));
-                                                          center =
-                                                              currentLocation;
-                                                        } else {
-                                                          _controller?.animateCamera(
-                                                              CameraUpdate
-                                                                  .newLatLngZoom(
-                                                                      center,
-                                                                      18.0));
-                                                        }
-                                                      } else {
-                                                        if (serviceEnabled ==
-                                                            true) {
-                                                          setState(() {
-                                                            _locationDenied =
-                                                                true;
-                                                          });
-                                                        } else {
-                                                          await geolocs
-                                                                  .Geolocator
-                                                              .getCurrentPosition(
-                                                                  desiredAccuracy:
-                                                                      geolocs
-                                                                          .LocationAccuracy
-                                                                          .low);
-                                                          if (await geolocs
-                                                              .GeolocatorPlatform
-                                                              .instance
-                                                              .isLocationServiceEnabled()) {
-                                                            setState(() {
-                                                              _locationDenied =
-                                                                  true;
-                                                            });
-                                                          }
-                                                        }
-                                                      }
-                                                    },
-                                                    child: Container(
-                                                      height: media.width * 0.1,
-                                                      width: media.width * 0.1,
-                                                      decoration: BoxDecoration(
-                                                          boxShadow: [
-                                                            BoxShadow(
-                                                                blurRadius: 2,
-                                                                color: Colors
-                                                                    .black
-                                                                    .withOpacity(
-                                                                        0.2),
-                                                                spreadRadius: 2)
-                                                          ],
-                                                          color: page,
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(media
-                                                                          .width *
-                                                                      0.02)),
-                                                      child: Icon(
-                                                          Icons
-                                                              .my_location_sharp,
-                                                          size: 20,
-                                                          color: textColor),
-                                                    ),
-                                                  ),
-                                                ),
+                                                // Positioned(
+                                                //   right: 10,
+                                                //   top: 155 + media.width * 0.35,
+                                                //   child: InkWell(
+                                                //     onTap: () async {
+                                                //       if (locationAllowed ==
+                                                //           true) {
+                                                //         if (currentLocation !=
+                                                //             null) {
+                                                //           _controller?.animateCamera(
+                                                //               CameraUpdate
+                                                //                   .newLatLngZoom(
+                                                //                       currentLocation,
+                                                //                       18.0));
+                                                //           center =
+                                                //               currentLocation;
+                                                //         } else {
+                                                //           _controller?.animateCamera(
+                                                //               CameraUpdate
+                                                //                   .newLatLngZoom(
+                                                //                       center,
+                                                //                       18.0));
+                                                //         }
+                                                //       } else {
+                                                //         if (serviceEnabled ==
+                                                //             true) {
+                                                //           setState(() {
+                                                //             _locationDenied =
+                                                //                 true;
+                                                //           });
+                                                //         } else {
+                                                //           await geolocs
+                                                //                   .Geolocator
+                                                //               .getCurrentPosition(
+                                                //                   desiredAccuracy:
+                                                //                       geolocs
+                                                //                           .LocationAccuracy
+                                                //                           .low);
+                                                //           if (await geolocs
+                                                //               .GeolocatorPlatform
+                                                //               .instance
+                                                //               .isLocationServiceEnabled()) {
+                                                //             setState(() {
+                                                //               _locationDenied =
+                                                //                   true;
+                                                //             });
+                                                //           }
+                                                //         }
+                                                //       }
+                                                //     },
+                                                //     child: Container(
+                                                //       height: media.width * 0.1,
+                                                //       width: media.width * 0.1,
+                                                //       decoration: BoxDecoration(
+                                                //           boxShadow: [
+                                                //             BoxShadow(
+                                                //                 blurRadius: 2,
+                                                //                 color: Colors
+                                                //                     .black
+                                                //                     .withOpacity(
+                                                //                         0.2),
+                                                //                 spreadRadius: 2)
+                                                //           ],
+                                                //           color: page,
+                                                //           borderRadius:
+                                                //               BorderRadius
+                                                //                   .circular(media
+                                                //                           .width *
+                                                //                       0.02)),
+                                                //       child: Icon(
+                                                //           Icons
+                                                //               .my_location_sharp,
+                                                //           size: 20,
+                                                //           color: textColor),
+                                                //     ),
+                                                //   ),
+                                                // ),
                                                 (userDetails['onTripRequest'] !=
                                                             null &&
                                                         (_lastCenter ==
@@ -1195,19 +1195,19 @@ class _MapsState extends State<Maps>
                                                                         .openDrawer();
                                                                   },
                                                                   child: Container(
-                                                                      height: media.width * 0.1,
-                                                                      width: media.width * 0.1,
-                                                                      decoration: BoxDecoration(boxShadow: [
-                                                                        (_bottom ==
-                                                                                0)
-                                                                            ? BoxShadow(
-                                                                                blurRadius: (_bottom == 0) ? 2 : 0,
-                                                                                color: (_bottom == 0) ? Colors.black.withOpacity(0.2) : Colors.transparent,
-                                                                                spreadRadius: (_bottom == 0) ? 2 : 0)
-                                                                            : const BoxShadow(),
-                                                                      ], color: page, borderRadius: BorderRadius.circular(4)),
+                                                                      height: media.width * 0.12,
+                                                                      width: media.width * 0.12,
+                                                                      // decoration: BoxDecoration(boxShadow: [
+                                                                      //   (_bottom ==
+                                                                      //           0)
+                                                                      //       ? BoxShadow(
+                                                                      //           blurRadius: (_bottom == 0) ? 2 : 0,
+                                                                      //           color: (_bottom == 0) ? Colors.black.withOpacity(0.2) : Colors.transparent,
+                                                                      //           spreadRadius: (_bottom == 0) ? 2 : 0)
+                                                                      //       : const BoxShadow(),
+                                                                      // ], color: page, borderRadius: BorderRadius.circular(4)),
                                                                       alignment: Alignment.center,
-                                                                      child: Icon(Icons.menu, size: media.width * 0.05, color: textColor)),
+                                                                      child: Image.asset('assets/images/logo-2.png',fit: BoxFit.fill,)),
                                                                 );
                                                               }),
                                                               SizedBox(
@@ -2411,24 +2411,24 @@ class _MapsState extends State<Maps>
 
                                                                 SizedBox(height: MediaQuery.of(context).size.height*.2,),
 
-                                                                SizedBox(
-                                                                  height:48,
-                                                                  width:144,
-                                                                  child: ElevatedButton(
-                                                                    child: Text('Process',
-                                                                        style:GoogleFonts.notoSans(
-                                                                          color: Colors.black,
-                                                                        )),
-                                                                    style: ElevatedButton.styleFrom(
-
-                                                                      textStyle: GoogleFonts.notoSans(
-                                                                          color: Colors.black,
-                                                                          fontSize: 16,
-                                                                          fontWeight: FontWeight.bold),
-                                                                    ),
-                                                                    onPressed: () {},
-                                                                  ),
-                                                                ),
+                                                                // SizedBox(
+                                                                //   height:48,
+                                                                //   width:144,
+                                                                //   child: ElevatedButton(
+                                                                //     child: Text('Process',
+                                                                //         style:GoogleFonts.notoSans(
+                                                                //           color: Colors.black,
+                                                                //         )),
+                                                                //     style: ElevatedButton.styleFrom(
+                                                                //
+                                                                //       textStyle: GoogleFonts.notoSans(
+                                                                //           color: Colors.black,
+                                                                //           fontSize: 16,
+                                                                //           fontWeight: FontWeight.bold),
+                                                                //     ),
+                                                                //     onPressed: () {},
+                                                                //   ),
+                                                                // ),
                                                               ],
                                                             ),
                                                           ),

@@ -5005,10 +5005,8 @@ class _BookingConfirmationState extends State<BookingConfirmation>
                                           padding: const EdgeInsets.only(left: 8.0,right: 8,top:16),
 
                                           //Captain Detail card
-                                          child: ListView.builder(
-                                            itemCount: 2,
-                                            itemBuilder: (context, index) {
-                                              return Column(
+                                          child:
+                                              Column(
                                                 children: [
                                                   Container(
                                                     decoration: BoxDecoration(
@@ -5116,118 +5114,10 @@ class _BookingConfirmationState extends State<BookingConfirmation>
                                                     ),
                                                   ),
 
-                                                  SizedBox(height: 16,),
 
-                                                  Container(
-                                                    decoration: BoxDecoration(
-                                                      color: Colors.white12,
-                                                      borderRadius: BorderRadius.circular(16),
-                                                    ),
-                                                    child: Padding(
-                                                      padding: const EdgeInsets.all(16.0),
-                                                      child: Column(
-                                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                                        children: [
-                                                          Row(
-                                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                            children: [
-                                                              Text('Ramesh',style: GoogleFonts.notoSans(color: Colors.white60,fontSize: 24,fontWeight: FontWeight.bold),),
-                                                              Text('₹ 50',style: GoogleFonts.notoSans(color: Colors.white60),),
-                                                            ],
-                                                          ),
-                                                          Row(
-                                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                            children: [
-                                                              Text('Car Model',style: GoogleFonts.notoSans(color: Colors.white60,fontSize: 16),),
-                                                              // Text('12Min',style: GoogleFonts.notoSans(color: Colors.white60),),
-                                                            ],
-                                                          ),
+                                                ]
+                                              ),
 
-                                                          SizedBox(
-                                                            height: 8,
-                                                          ),
-
-                                                          Row(
-                                                            children: [
-                                                              Icon(Icons.star_rounded,color: Colors.white60),
-                                                              Icon(Icons.star_rounded,color: Colors.white60),
-                                                              Icon(Icons.star_rounded,color: Colors.white60),
-                                                              Icon(Icons.star_rounded,color: Colors.white60),
-                                                              Icon(Icons.star_half_rounded,color: Colors.white60),
-                                                            ],
-                                                          ),
-
-                                                          SizedBox(
-                                                            height: 16,
-                                                          ),
-
-                                                          Row(
-                                                            // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                            children: [
-
-                                                              //Primary Button
-                                                              SizedBox(
-                                                                height:56,
-                                                                width: MediaQuery.of(context).size.width*0.38,
-                                                                child: ElevatedButton(
-                                                                  child: Text('Book Ride',style: GoogleFonts.notoSans(
-                                                                    color: Colors.white,
-
-                                                                  ),),
-                                                                  // Within the `FirstRoute` widget
-                                                                  onPressed: () {
-                                                                    Navigator.push(
-                                                                      context,
-                                                                      MaterialPageRoute(builder: (context) =>  Loading()),
-                                                                    );
-                                                                  },
-
-                                                                  style: ElevatedButton.styleFrom(
-                                                                      backgroundColor: Colors.black,
-                                                                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24),),
-                                                                      textStyle: GoogleFonts.notoSans(
-                                                                        fontSize: 15,
-                                                                        fontWeight: FontWeight.bold,
-                                                                        color: Colors.white,
-                                                                      )),
-                                                                ),
-                                                              ),
-
-                                                              SizedBox(width:MediaQuery.of(context).size.width*0.022),
-
-                                                              //Secondary Button
-                                                              SizedBox(
-                                                                height:56,
-                                                                width: MediaQuery.of(context).size.width*0.38,
-                                                                child: OutlinedButton(
-                                                                  child: Text('View Details',style: GoogleFonts.notoSans(
-                                                                      color: Colors.white
-                                                                  ),),
-                                                                  onPressed: () {},
-
-                                                                  style: ElevatedButton.styleFrom(
-                                                                    // backgroundColor: Colors.white.withOpacity(.1),
-                                                                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24),),
-                                                                      textStyle: GoogleFonts.notoSans(
-                                                                        fontSize: 15,
-                                                                        fontWeight: FontWeight.bold,
-                                                                        // color: Colors.white,
-                                                                      )),
-                                                                ),
-                                                              ),
-                                                            ],
-                                                          ),
-
-
-                                                        ],
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ],
-                                              );
-
-                                            }
-                                          ),
 
                                             ),
                                           ],
