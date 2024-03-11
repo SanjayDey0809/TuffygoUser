@@ -744,6 +744,8 @@ class _MapsState extends State<Maps>
                                                                 );
                                                               });
                                                         })),
+
+                                                // Confirm button in map
                                                 Positioned(
                                                     top: 0,
                                                     child: Container(
@@ -801,6 +803,17 @@ class _MapsState extends State<Maps>
                                                                               ischanged = true;
                                                                               _loading = false;
                                                                             });
+
+    if (ischanged) {
+               setState(
+                 () {
+                 _lastCenter =
+                   _centerLocation;
+
+                 ischanged =
+                    false;
+              });
+            }
                                                                           },
                                                                           text: languages[choosenLanguage]
                                                                               [
@@ -1322,21 +1335,25 @@ class _MapsState extends State<Maps>
                                                                             'show_rental_ride'] ==
                                                                         true)
                                                                     ? media.width *
-                                                                       1.68
+                                                                       1.2
                                                                     : media.width *
                                                                         0.5
                                                                 : _height,
                                                             constraints: BoxConstraints(
-                                                                minHeight: (userDetails[
-                                                                            'show_rental_ride'] ==
-                                                                        true)
-                                                                    ? media.width *
-                                                                        1.2
-                                                                    : media.width *
+                                                                minHeight: media.width *
                                                                     1.2,
-                                                                maxHeight: media
-                                                                        .height *
-                                                                    1),
+
+                                                                // (userDetails[
+                                                                //             'show_rental_ride'] ==
+                                                                //         true)
+                                                                //     ? media.width *
+                                                                //         1
+                                                                //     : media.width *
+                                                                //     1,
+                                                                // maxHeight: media
+                                                                //         .height *
+                                                                //     1
+                                                            ),
                                                             curve: Curves
                                                                 .fastOutSlowIn,
                                                             decoration:
@@ -2539,36 +2556,38 @@ class _MapsState extends State<Maps>
                                                                         .width *
                                                                     0.02,
                                                               ),
-                                                              ShowUpWidget(
-                                                                delay: 100,
-                                                                child: Button(
-                                                                    borderRadius:
-                                                                        0.0,
-                                                                    height:
-                                                                        media.width *
-                                                                            0.1,
-                                                                    color: ischanged
-                                                                        ? buttonColor
-                                                                        : Colors
-                                                                            .grey,
-                                                                    onTap:
-                                                                        () async {
-                                                                      if (ischanged) {
-                                                                        setState(
-                                                                            () {
-                                                                          _lastCenter =
-                                                                              _centerLocation;
 
-                                                                          ischanged =
-                                                                              false;
-                                                                        });
-                                                                      }
-                                                                    },
-                                                                    text: languages[
-                                                                            choosenLanguage]
-                                                                        [
-                                                                        'text_confirm']),
-                                                              )
+                                                              //Confirm button in map
+                                                              // ShowUpWidget(
+                                                              //   delay: 100,
+                                                              //   child: Button(
+                                                              //       borderRadius:
+                                                              //           0.0,
+                                                              //       height:
+                                                              //           media.width *
+                                                              //               0.1,
+                                                              //       color: ischanged
+                                                              //           ? buttonColor
+                                                              //           : Colors
+                                                              //               .grey,
+                                                              //       onTap:
+                                                              //           () async {
+                                                              //         if (ischanged) {
+                                                              //           setState(
+                                                              //               () {
+                                                              //             _lastCenter =
+                                                              //                 _centerLocation;
+                                                              //
+                                                              //             ischanged =
+                                                              //                 false;
+                                                              //           });
+                                                              //         }
+                                                              //       },
+                                                              //       text: languages[
+                                                              //               choosenLanguage]
+                                                              //           [
+                                                              //           'text_confirm']),
+                                                              // )
                                                             ],
                                                           ),
                                                         ))
