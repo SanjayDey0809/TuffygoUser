@@ -28,6 +28,14 @@ import 'drop_loc_select.dart';
 import 'invoice.dart';
 import 'map_page.dart';
 
+List cars=[
+  {'name': 'Roshan','price':200},
+  {'name': 'Rishi','price':200},
+  {'name': 'Abhishek','price':200},
+  {'name': 'Abhijeet','price':200},
+
+];
+
 // ignore: must_be_immutable
 class BookingConfirmation extends StatefulWidget {
   // const BookingConfirmation({Key? key}) : super(key: key);
@@ -55,6 +63,7 @@ bool lowWalletBalance = false;
 bool tripReqError = false;
 List rentalOption = [];
 int rentalChoosenOption = 0;
+int pro=0;
 Animation<double>? _animation;
 
 class _BookingConfirmationState extends State<BookingConfirmation>
@@ -141,6 +150,90 @@ class _BookingConfirmationState extends State<BookingConfirmation>
     getLocs();
 
     super.initState();
+  }
+  void ProRiderContainer() {
+    Column (
+      children: [
+      Container(
+      width:50,
+      height: 4,
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular((64)),),
+
+    ),
+
+    SizedBox(
+    height: 8,
+    ),
+
+    Text('Select Your Captain',style: GoogleFonts.notoSans(
+    color: Colors.white,
+    fontSize: 24,
+    fontWeight: FontWeight.bold,
+
+    ),),
+
+    Padding(
+    padding: const EdgeInsets.only(top:8),
+    child: Row(
+    mainAxisAlignment: MainAxisAlignment.center,
+
+    children: [
+    //search bar
+    SizedBox(
+    width:296,
+    height: 56,
+    child: TextField(
+    cursorColor: Colors.white,
+    decoration: InputDecoration(
+    prefixIcon: Icon(Icons.search),
+    fillColor: Colors.black.withOpacity(.8),
+    focusColor: Colors.white,
+    focusedBorder: OutlineInputBorder(
+    borderSide: BorderSide(color: Colors.white), // Set the color for focused border
+    borderRadius: BorderRadius.circular(24),
+    ),
+    border: OutlineInputBorder(
+    borderRadius: BorderRadius.circular(24),
+    ),
+    // labelText: 'Filled',
+    hintText: 'Search By Name, Car Number, driver id..',
+    hintStyle: GoogleFonts.notoSans(
+    color: Colors.white24
+    ),
+    filled: true,
+    ),
+    ),
+    ),
+    SizedBox(width:8),
+
+    Container(
+    height: 40,
+    width: 40,
+    decoration: BoxDecoration(
+    shape: BoxShape.circle,
+    color:Colors.white.withOpacity(.1)
+    ),
+    child:Icon(Icons.downloading_sharp,
+    color: Colors.white60,),
+    ),
+    SizedBox(width:8),
+
+    //Referral Icon
+    Container(
+    height: 40,
+    width: 40,
+    decoration: BoxDecoration(
+    shape: BoxShape.circle,
+    color:Colors.white.withOpacity(.1),
+    ),
+    child:Icon(Icons.receipt_long_rounded,
+    color: Colors.white60),
+    ),
+    ],
+    ),
+    )]);
   }
 
   @override
@@ -1431,7 +1524,7 @@ class _BookingConfirmationState extends State<BookingConfirmation>
                                             height:
                                                 (bottomChooseMethod == false &&
                                                         widget.type != 1)
-                                                    ? media.width * .9
+                                                    ? media.width * 1.1
                                                     : (bottomChooseMethod ==
                                                                 false &&
                                                             widget.type == 1)
@@ -1441,10 +1534,10 @@ class _BookingConfirmationState extends State<BookingConfirmation>
                                                 borderRadius:
                                                     const BorderRadius.only(
                                                         topLeft:
-                                                            Radius.circular(25),
+                                                            Radius.circular(48),
                                                         topRight:
                                                             Radius.circular(
-                                                                25)),
+                                                                48)),
                                                 color: page),
                                             child: Column(
                                               children: [
@@ -1852,56 +1945,178 @@ class _BookingConfirmationState extends State<BookingConfirmation>
                                                                               .values
                                                                               .toList(),
                                                                         ),
+
                                                                         //pro rider
-                                                                        Container(
-                                                                          padding: EdgeInsets.all(media.width * 0.02),
-                                                                          margin: EdgeInsets.only(top: 10, left: media.width * 0.05, right: media.width * 0.05),
-                                                                          height: media.width * 0.157,
-                                                                          decoration: BoxDecoration(
-                                                                            borderRadius: BorderRadius.circular(12),
-                                                                            boxShadow: [
-                                                                              BoxShadow(color: (isDarkTheme == true) ? Colors.white.withOpacity(0.1) : Colors.black.withOpacity(0.21), spreadRadius: 1.5, blurRadius: 1.5)
-                                                                            ],
-                                                                            color: Colors.black38,
-                                                                          ),
-                                                                          child: Row(
-                                                                            children: [
+                                                                        InkWell(
+                                                                          onTap: () async {
 
-                                                                              SizedBox(
-                                                                                width: media.width * 0.02,
-                                                                              ),
-
-                                                                              SizedBox(
-                                                                                height:24,
-                                                                                width: 24,
-                                                                                child: Image.asset('assets/images/crown.png'),
-                                                                              ),
-
-                                                                              SizedBox(
-                                                                                width: media.width * 0.05,
-                                                                              ),
-
-                                                                              Text('Pro Booking',
-                                                                                  style:GoogleFonts.notoSans(
-                                                                                      fontSize: media.width * fourteen,
-                                                                                      fontWeight: FontWeight.w600,
-                                                                                      color: Colors.white
-                                                                                  )),
-
-                                                                              //  SizedBox(
-                                                                              //      width: media
-                                                                              //          .width *
-                                                                              //              .35,),
-                                                                              //
-                                                                              // Text('₹ 180',
-                                                                              //     style:GoogleFonts.notoSans(
-                                                                              //         fontSize: media.width * fourteen,
-                                                                              //         fontWeight: FontWeight.w600,
-                                                                              //         color: Colors.white
-                                                                              //     )),
-
-
-                                                                            ],
+                                                                            setState(() {
+                                                                              pro =1;
+                                                                            });
+                                                                            if (pro==1 &&( widget.type ==
+                                                                                2) ||
+                                                                                (((rentalOption.isEmpty && (etaDetails[choosenVehicle]['user_wallet_balance'] >= etaDetails[choosenVehicle]['total'] && etaDetails[choosenVehicle]['has_discount'] == false) || (rentalOption.isEmpty && etaDetails[choosenVehicle]['has_discount'] == true && etaDetails[choosenVehicle]['user_wallet_balance'] >= etaDetails[choosenVehicle]['discounted_totel'])) ||
+                                                                                    (rentalOption.isEmpty &&
+                                                                                        etaDetails[choosenVehicle]['payment_type'].toString().split(',').toList()[payingVia] !=
+                                                                                            'wallet')) ||
+                                                                                    ((rentalOption.isNotEmpty && (etaDetails[0]['user_wallet_balance'] >= rentalOption[choosenVehicle]['fare_amount']) && rentalOption[choosenVehicle]['has_discount'] == false) ||
+                                                                                        (rentalOption.isNotEmpty &&
+                                                                                            rentalOption[choosenVehicle]['has_discount'] ==
+                                                                                                true &&
+                                                                                            etaDetails[0]['user_wallet_balance'] >=
+                                                                                                rentalOption[choosenVehicle][
+                                                                                                'discounted_totel']) ||
+                                                                                        rentalOption.isNotEmpty &&
+                                                                                            rentalOption[choosenVehicle]['payment_type'].toString().split(',').toList()[payingVia] !=
+                                                                                                'wallet'))) {
+                                                                              setState(() {
+                                                                                _isLoading =
+                                                                                true;
+                                                                              });
+                                                                              dropStopList
+                                                                                  .clear();
+                                                                              dynamic result;
+                                                                              if (choosenVehicle !=
+                                                                                  null) {
+                                                                                if (widget
+                                                                                    .type !=
+                                                                                    1) {
+                                                                                  if (etaDetails[
+                                                                                  choosenVehicle]
+                                                                                  [
+                                                                                  'has_discount'] ==
+                                                                                      false) {
+                                                                                    if (addressList
+                                                                                        .length >
+                                                                                        2) {
+                                                                                      for (var i =
+                                                                                      1;
+                                                                                      i < addressList.length;
+                                                                                      i++) {
+                                                                                        dropStopList.add(DropStops(
+                                                                                            order:
+                                                                                            i.toString(),
+                                                                                            latitude: addressList[i].latlng.latitude,
+                                                                                            longitude: addressList[i].latlng.longitude,
+                                                                                            address: addressList[i].address));
+                                                                                      }
+                                                                                    }
+                                                                                    result =
+                                                                                    await createRequest();
+                                                                                    if (result ==
+                                                                                        'logout') {
+                                                                                      navigateLogout();
+                                                                                    }
+                                                                                  } else {
+                                                                                    if (addressList
+                                                                                        .length >
+                                                                                        2) {
+                                                                                      for (var i =
+                                                                                      1;
+                                                                                      i < addressList.length;
+                                                                                      i++) {
+                                                                                        dropStopList.add(DropStops(
+                                                                                            order:
+                                                                                            i.toString(),
+                                                                                            latitude: addressList[i].latlng.latitude,
+                                                                                            longitude: addressList[i].latlng.longitude,
+                                                                                            address: addressList[i].address));
+                                                                                      }
+                                                                                    }
+                                                                                    result =
+                                                                                    await createRequestWithPromo();
+                                                                                    if (result ==
+                                                                                        'logout') {
+                                                                                      navigateLogout();
+                                                                                    }
+                                                                                  }
+                                                                                } else {
+                                                                                  if (rentalOption[
+                                                                                  choosenVehicle]
+                                                                                  [
+                                                                                  'has_discount'] ==
+                                                                                      false) {
+                                                                                    result =
+                                                                                    await createRentalRequest();
+                                                                                    if (result ==
+                                                                                        'logout') {
+                                                                                      navigateLogout();
+                                                                                    }
+                                                                                  } else {
+                                                                                    result =
+                                                                                    await createRentalRequestWithPromo();
+                                                                                    if (result ==
+                                                                                        'logout') {
+                                                                                      navigateLogout();
+                                                                                    }
+                                                                                  }
+                                                                                }
+                                                                              }
+                                                                              if (result ==
+                                                                                  'success') {
+                                                                                timer();
+                                                                              }
+                                                                              setState(() {
+                                                                                _isLoading =
+                                                                                false;
+                                                                              });
+                                                                            } else {
+                                                                              setState(() {
+                                                                                islowwalletbalance =
+                                                                                true;
+                                                                              });
+                                                                            }
+                                                                          },
+                                                                          child: Container(
+                                                                            padding: EdgeInsets.all(media.width * 0.02),
+                                                                            margin: EdgeInsets.only(top: 10, left: media.width * 0.05, right: media.width * 0.05),
+                                                                            height: media.width * 0.157,
+                                                                            decoration: BoxDecoration(
+                                                                              borderRadius: BorderRadius.circular(12),
+                                                                              boxShadow: [
+                                                                                BoxShadow(color: (isDarkTheme == true) ? Colors.white.withOpacity(0.1) : Colors.black.withOpacity(0.21), spreadRadius: 1.5, blurRadius: 1.5)
+                                                                              ],
+                                                                              color: Colors.black38,
+                                                                            ),
+                                                                            child: Row(
+                                                                              children: [
+                                                                          
+                                                                                SizedBox(
+                                                                                  width: media.width * 0.02,
+                                                                                ),
+                                                                          
+                                                                                SizedBox(
+                                                                                  height:24,
+                                                                                  width: 24,
+                                                                                  child: Image.asset('assets/images/crown.png'),
+                                                                                ),
+                                                                          
+                                                                                SizedBox(
+                                                                                  width: media.width * 0.05,
+                                                                                ),
+                                                                          
+                                                                                Text('Pro Booking',
+                                                                                    style:GoogleFonts.notoSans(
+                                                                                        fontSize: media.width * fourteen,
+                                                                                        fontWeight: FontWeight.w600,
+                                                                                        color: Colors.white
+                                                                                    )),
+                                                                          
+                                                                                //  SizedBox(
+                                                                                //      width: media
+                                                                                //          .width *
+                                                                                //              .35,),
+                                                                                //
+                                                                                // Text('₹ 180',
+                                                                                //     style:GoogleFonts.notoSans(
+                                                                                //         fontSize: media.width * fourteen,
+                                                                                //         fontWeight: FontWeight.w600,
+                                                                                //         color: Colors.white
+                                                                                //     )),
+                                                                          
+                                                                          
+                                                                              ],
+                                                                            ),
                                                                           ),
                                                                         ),
                                                                       ],
@@ -4656,7 +4871,7 @@ class _BookingConfirmationState extends State<BookingConfirmation>
                                                 SizedBox(
                                                   height: media.height * 0.01,
                                                 ),
-                                                Text('Booking in pro mode is 20X faster....',
+                                                Text('Booking in pro mode is 20X faster...',
                                                     style:GoogleFonts.notoSans(
                                                   color:Colors.white24,
                                                       fontSize: 16
@@ -4681,6 +4896,346 @@ class _BookingConfirmationState extends State<BookingConfirmation>
                                             ),
                                           ),
                                         )
+                                      : Container(),
+
+                                  // pro rider detail
+                                  (pro==1 && userRequestData.isNotEmpty &&
+                                      userRequestData['is_later'] ==
+                                          null &&
+                                      userRequestData['accepted_at'] ==
+                                          null ||
+                                      userRequestData.isNotEmpty &&
+                                          userRequestData['is_later'] ==
+                                              0 &&
+                                          userRequestData['accepted_at'] ==
+                                              null)
+                                      ? Positioned(
+                                    bottom: 0,
+                                    child: Container(
+                                      height: MediaQuery.of(context).size.height*.5,
+                                      width: media.width * 1,
+                                      decoration: BoxDecoration(
+                                        borderRadius:
+                                        const BorderRadius.only(
+                                            topLeft:
+                                            Radius.circular(48),
+                                            topRight:
+                                            Radius.circular(48)),
+                                        color: page,
+                                      ),
+                                      padding: EdgeInsets.all(
+                                          media.width * 0.05),
+                                      child:
+
+                                         Column(
+                                          children: [
+
+                                            SizedBox(
+                                              height: 8,
+                                            ),
+
+                                            Text('Select Your Captain',style: GoogleFonts.notoSans(
+                                              color: Colors.white,
+                                              fontSize: 24,
+                                              fontWeight: FontWeight.bold,
+
+                                            ),),
+
+                                            Padding(
+                                              padding:const EdgeInsets.only(top:8),
+                                            child: Row(
+                                                mainAxisAlignment: MainAxisAlignment.center,
+
+                                                children: [
+                                              //search bar
+                                              SizedBox(
+                                              width:MediaQuery.of(context).size.width*0.6,
+                                              height: 56,
+                                              child: TextField(
+                                                cursorColor: Colors.white,
+                                                decoration: InputDecoration(
+                                                  prefixIcon: Icon(Icons.search),
+                                                  fillColor: Colors.black.withOpacity(.8),
+                                                  focusColor: Colors.white,
+                                                  focusedBorder: OutlineInputBorder(
+                                                    borderSide: BorderSide(color: Colors.white), // Set the color for focused border
+                                                    borderRadius: BorderRadius.circular(24),
+                                                  ),
+                                                  border: OutlineInputBorder(
+                                                    borderRadius: BorderRadius.circular(24),
+                                                  ),
+                                                  // labelText: 'Filled',
+                                                  hintText: 'Search By Name, Car Number, driver id..',
+                                                  hintStyle: GoogleFonts.notoSans(
+                                                      color: Colors.white24
+                                                  ),
+                                                  filled: true,
+                                                ),
+                                            ),),
+                                                               SizedBox(width:MediaQuery.of(context).size.width*0.01),
+
+                                                  Container(
+                                                    height: 40,
+                                                    width: 40,
+                                                    decoration: BoxDecoration(
+                                                        shape: BoxShape.circle,
+                                                        color:Colors.white.withOpacity(.1)
+                                                    ),
+                                                    child:Icon(Icons.downloading_sharp,
+                                                      color: Colors.white60,),
+                                                  ),
+                                                  SizedBox(width:MediaQuery.of(context).size.width*0.01),
+
+                                                  //Referral Icon
+                                                  Container(
+                                                    height: 40,
+                                                    width: 40,
+                                                    decoration: BoxDecoration(
+                                                      shape: BoxShape.circle,
+                                                      color:Colors.white.withOpacity(.1),
+                                                    ),
+                                                    child:Icon(Icons.receipt_long_rounded,
+                                                        color: Colors.white60),
+                                                  ),
+
+
+                                                ])),
+
+                                        Padding(
+                                          padding: const EdgeInsets.only(left: 8.0,right: 8,top:16),
+
+                                          //Captain Detail card
+                                          child: ListView.builder(
+                                            itemCount: 2,
+                                            itemBuilder: (context, index) {
+                                              return Column(
+                                                children: [
+                                                  Container(
+                                                    decoration: BoxDecoration(
+                                                      color: Colors.white12,
+                                                      borderRadius: BorderRadius.circular(16),
+                                                    ),
+                                                    child: Padding(
+                                                      padding: const EdgeInsets.all(16.0),
+                                                      child: Column(
+                                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                                        children: [
+                                                          Row(
+                                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                            children: [
+                                                              Text('Ramesh',style: GoogleFonts.notoSans(color: Colors.white60,fontSize: 24,fontWeight: FontWeight.bold),),
+                                                              Text('₹ 50',style: GoogleFonts.notoSans(color: Colors.white60),),
+                                                            ],
+                                                          ),
+                                                          Row(
+                                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                            children: [
+                                                              Text('Car Model',style: GoogleFonts.notoSans(color: Colors.white60,fontSize: 16),),
+                                                              // Text('12Min',style: GoogleFonts.notoSans(color: Colors.white60),),
+                                                            ],
+                                                          ),
+
+                                                          SizedBox(
+                                                            height: 8,
+                                                          ),
+
+                                                          Row(
+                                                            children: [
+                                                              Icon(Icons.star_rounded,color: Colors.white60),
+                                                              Icon(Icons.star_rounded,color: Colors.white60),
+                                                              Icon(Icons.star_rounded,color: Colors.white60),
+                                                              Icon(Icons.star_rounded,color: Colors.white60),
+                                                              Icon(Icons.star_half_rounded,color: Colors.white60),
+                                                            ],
+                                                          ),
+
+                                                          SizedBox(
+                                                            height: 16,
+                                                          ),
+
+                                                          Row(
+                                                            // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                            children: [
+
+                                                              //Primary Button
+                                                              SizedBox(
+                                                                height:56,
+                                                                width: MediaQuery.of(context).size.width*0.38,
+                                                                child: ElevatedButton(
+                                                                  child: Text('Book Ride',style: GoogleFonts.notoSans(
+                                                                    color: Colors.white,
+
+                                                                  ),),
+                                                                  // Within the `FirstRoute` widget
+                                                                  onPressed: () {
+                                                                    Navigator.push(
+                                                                      context,
+                                                                      MaterialPageRoute(builder: (context) =>  Loading()),
+                                                                    );
+                                                                  },
+
+                                                                  style: ElevatedButton.styleFrom(
+                                                                      backgroundColor: Colors.black,
+                                                                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24),),
+                                                                      textStyle: GoogleFonts.notoSans(
+                                                                        fontSize: 15,
+                                                                        fontWeight: FontWeight.bold,
+                                                                        color: Colors.white,
+                                                                      )),
+                                                                ),
+                                                              ),
+
+                                                              SizedBox(width:MediaQuery.of(context).size.width*0.022),
+
+                                                              //Secondary Button
+                                                              SizedBox(
+                                                                height:56,
+                                                                width: MediaQuery.of(context).size.width*0.38,
+                                                                child: OutlinedButton(
+                                                                  child: Text('View Details',style: GoogleFonts.notoSans(
+                                                                      color: Colors.white
+                                                                  ),),
+                                                                  onPressed: () {},
+
+                                                                  style: ElevatedButton.styleFrom(
+                                                                    // backgroundColor: Colors.white.withOpacity(.1),
+                                                                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24),),
+                                                                      textStyle: GoogleFonts.notoSans(
+                                                                        fontSize: 15,
+                                                                        fontWeight: FontWeight.bold,
+                                                                        // color: Colors.white,
+                                                                      )),
+                                                                ),
+                                                              ),
+                                                            ],
+                                                          ),
+
+
+                                                        ],
+                                                      ),
+                                                    ),
+                                                  ),
+
+                                                  SizedBox(height: 16,),
+
+                                                  Container(
+                                                    decoration: BoxDecoration(
+                                                      color: Colors.white12,
+                                                      borderRadius: BorderRadius.circular(16),
+                                                    ),
+                                                    child: Padding(
+                                                      padding: const EdgeInsets.all(16.0),
+                                                      child: Column(
+                                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                                        children: [
+                                                          Row(
+                                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                            children: [
+                                                              Text('Ramesh',style: GoogleFonts.notoSans(color: Colors.white60,fontSize: 24,fontWeight: FontWeight.bold),),
+                                                              Text('₹ 50',style: GoogleFonts.notoSans(color: Colors.white60),),
+                                                            ],
+                                                          ),
+                                                          Row(
+                                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                            children: [
+                                                              Text('Car Model',style: GoogleFonts.notoSans(color: Colors.white60,fontSize: 16),),
+                                                              // Text('12Min',style: GoogleFonts.notoSans(color: Colors.white60),),
+                                                            ],
+                                                          ),
+
+                                                          SizedBox(
+                                                            height: 8,
+                                                          ),
+
+                                                          Row(
+                                                            children: [
+                                                              Icon(Icons.star_rounded,color: Colors.white60),
+                                                              Icon(Icons.star_rounded,color: Colors.white60),
+                                                              Icon(Icons.star_rounded,color: Colors.white60),
+                                                              Icon(Icons.star_rounded,color: Colors.white60),
+                                                              Icon(Icons.star_half_rounded,color: Colors.white60),
+                                                            ],
+                                                          ),
+
+                                                          SizedBox(
+                                                            height: 16,
+                                                          ),
+
+                                                          Row(
+                                                            // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                            children: [
+
+                                                              //Primary Button
+                                                              SizedBox(
+                                                                height:56,
+                                                                width: MediaQuery.of(context).size.width*0.38,
+                                                                child: ElevatedButton(
+                                                                  child: Text('Book Ride',style: GoogleFonts.notoSans(
+                                                                    color: Colors.white,
+
+                                                                  ),),
+                                                                  // Within the `FirstRoute` widget
+                                                                  onPressed: () {
+                                                                    Navigator.push(
+                                                                      context,
+                                                                      MaterialPageRoute(builder: (context) =>  Loading()),
+                                                                    );
+                                                                  },
+
+                                                                  style: ElevatedButton.styleFrom(
+                                                                      backgroundColor: Colors.black,
+                                                                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24),),
+                                                                      textStyle: GoogleFonts.notoSans(
+                                                                        fontSize: 15,
+                                                                        fontWeight: FontWeight.bold,
+                                                                        color: Colors.white,
+                                                                      )),
+                                                                ),
+                                                              ),
+
+                                                              SizedBox(width:MediaQuery.of(context).size.width*0.022),
+
+                                                              //Secondary Button
+                                                              SizedBox(
+                                                                height:56,
+                                                                width: MediaQuery.of(context).size.width*0.38,
+                                                                child: OutlinedButton(
+                                                                  child: Text('View Details',style: GoogleFonts.notoSans(
+                                                                      color: Colors.white
+                                                                  ),),
+                                                                  onPressed: () {},
+
+                                                                  style: ElevatedButton.styleFrom(
+                                                                    // backgroundColor: Colors.white.withOpacity(.1),
+                                                                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24),),
+                                                                      textStyle: GoogleFonts.notoSans(
+                                                                        fontSize: 15,
+                                                                        fontWeight: FontWeight.bold,
+                                                                        // color: Colors.white,
+                                                                      )),
+                                                                ),
+                                                              ),
+                                                            ],
+                                                          ),
+
+
+                                                        ],
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ],
+                                              );
+
+                                            }
+                                          ),
+
+                                            ),
+                                          ],
+
+
+                                      ),
+                                    ),
+                                  )
                                       : Container(),
                                   (userRequestData.isNotEmpty &&
                                           userRequestData['accepted_at'] !=
