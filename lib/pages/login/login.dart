@@ -776,53 +776,56 @@ class _LoginState extends State<Login> with TickerProviderStateMixin {
                                                     )
 
                                                   ),
-                                                  alignment:
-                                                      Alignment.bottomCenter,
+
                                                   height: 50,
-                                                  child: TextFormField(
-                                                    textAlign: TextAlign.start,
-                                                    controller: controller,
-                                                    cursorColor: Colors.white,
+
+                                                  child: Padding(
+                                                    padding: const EdgeInsets.only(left:8.0),
+                                                    child: TextFormField(
+
+                                                      controller: controller,
+                                                      cursorColor: Colors.white,
 
 
-                                                    onChanged: (val) {
-                                                      setState(() {
-                                                        phnumber =
-                                                            controller.text;
-                                                      });
-                                                      if (controller
-                                                              .text.length ==
-                                                          countries[phcode][
-                                                              'dial_max_length']) {
-                                                        FocusManager.instance
-                                                            .primaryFocus
-                                                            ?.unfocus();
-                                                      }
-                                                    },
-                                                    maxLength: countries[phcode]
-                                                        ['dial_max_length'],
-                                                    style: GoogleFonts.notoSans(
-                                                        color: textColor,
-                                                        fontSize: media.width *
-                                                            sixteen,
-                                                        letterSpacing: 1),
-                                                    keyboardType:
-                                                        TextInputType.number,
-                                                    decoration: InputDecoration(
-                                                      counterText: '',
+                                                      onChanged: (val) {
+                                                        setState(() {
+                                                          phnumber =
+                                                              controller.text;
+                                                        });
+                                                        if (controller
+                                                                .text.length ==
+                                                            countries[phcode][
+                                                                'dial_max_length']) {
+                                                          FocusManager.instance
+                                                              .primaryFocus
+                                                              ?.unfocus();
+                                                        }
+                                                      },
+                                                      maxLength: countries[phcode]
+                                                          ['dial_max_length'],
+                                                      style: GoogleFonts.notoSans(
+                                                          color: textColor,
+                                                          fontSize: media.width *
+                                                              sixteen,
+                                                          letterSpacing: 1),
+                                                      keyboardType:
+                                                          TextInputType.number,
+                                                      decoration: InputDecoration(
+                                                        counterText: '',
 
-                                                      hintText: ' X X X X X X X X X X',
+                                                        hintText: ' X X X X X X X X X X',
 
-                                                      hintStyle:
-                                                          GoogleFonts.notoSans(
-                                                        color: textColor
-                                                            .withOpacity(0.5),
-                                                        fontSize: media.width *
-                                                            sixteen,
+                                                        hintStyle:
+                                                            GoogleFonts.notoSans(
+                                                          color: textColor
+                                                              .withOpacity(0.5),
+                                                          fontSize: media.width *
+                                                              sixteen,
+                                                        ),
+                                                        border: InputBorder.none,
+                                                        enabledBorder:
+                                                            InputBorder.none,
                                                       ),
-                                                      border: InputBorder.none,
-                                                      enabledBorder:
-                                                          InputBorder.none,
                                                     ),
                                                   ),
                                                 ),
