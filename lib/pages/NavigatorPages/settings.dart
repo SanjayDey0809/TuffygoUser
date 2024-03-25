@@ -111,55 +111,55 @@ class _SettingsPageState extends State<SettingsPage> {
                                         const SelectLanguage()));
                           },
                         ),
-                        SizedBox(
-                          height: media.width * 0.02,
-                        ),
-                        ShowUp(
-                          delay: 200,
-                          child: Material(
-                            elevation: 5,
-                            child: InkWell(
-                              onTap: () async {
-                                darkthemefun();
-                              },
-                              child: Container(
-                                color: page,
-                                padding: EdgeInsets.all(media.width * 0.03),
-                                child: Row(
-                                  children: [
-                                    Icon(
-                                      isDarkTheme
-                                          ? Icons.brightness_4_outlined
-                                          : Icons.brightness_3_rounded,
-                                      size: media.width * 0.075,
-                                      color: textColor.withOpacity(0.5),
-                                    ),
-                                    SizedBox(
-                                      width: media.width * 0.025,
-                                    ),
-                                    Expanded(
-                                      child: Text(
-                                        languages[choosenLanguage]
-                                            ['text_select_theme'],
-                                        style: GoogleFonts.notoSans(
-                                            fontSize: media.width * sixteen,
-                                            color: textColor.withOpacity(0.8)),
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      height: media.width * 0.07,
-                                      child: Switch(
-                                          value: isDarkTheme,
-                                          onChanged: (toggle) async {
-                                            darkthemefun();
-                                          }),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
+                        // SizedBox(
+                        //   height: media.width * 0.02,
+                        // ),
+                        // ShowUp(
+                        //   delay: 200,
+                        //   child: Material(
+                        //     elevation: 5,
+                        //     child: InkWell(
+                        //       onTap: () async {
+                        //         darkthemefun();
+                        //       },
+                        //       child: Container(
+                        //         color: page,
+                        //         padding: EdgeInsets.all(media.width * 0.03),
+                        //         child: Row(
+                        //           children: [
+                        //             Icon(
+                        //               isDarkTheme
+                        //                   ? Icons.brightness_4_outlined
+                        //                   : Icons.brightness_3_rounded,
+                        //               size: media.width * 0.075,
+                        //               color: textColor.withOpacity(0.5),
+                        //             ),
+                        //             SizedBox(
+                        //               width: media.width * 0.025,
+                        //             ),
+                        //             Expanded(
+                        //               child: Text(
+                        //                 languages[choosenLanguage]
+                        //                     ['text_select_theme'],
+                        //                 style: GoogleFonts.notoSans(
+                        //                     fontSize: media.width * sixteen,
+                        //                     color: textColor.withOpacity(0.8)),
+                        //               ),
+                        //             ),
+                        //             SizedBox(
+                        //               height: media.width * 0.07,
+                        //               child: Switch(
+                        //                   value: isDarkTheme,
+                        //                   onChanged: (toggle) async {
+                        //                     darkthemefun();
+                        //                   }),
+                        //             ),
+                        //           ],
+                        //         ),
+                        //       ),
+                        //     ),
+                        //   ),
+                        // ),
                         SizedBox(
                           height: media.width * 0.02,
                         ),

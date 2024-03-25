@@ -40,7 +40,7 @@ bool internet = true;
 
 //base url
 String url =
-    'https://tuffygo.com/public/'; //add '/' at the end of the url as 'https://url.com/'
+    'https://tuffygo.com/'; //add '/' at the end of the url as 'https://url.com/'
 String mapkey = 'AIzaSyCfTVc37K1LVSCAcbT0vIJS2AJsu0Mc49c';
 
 //check internet connection
