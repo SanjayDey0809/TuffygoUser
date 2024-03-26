@@ -27,8 +27,9 @@ import '../noInternet/noInternet.dart';
 import 'drop_loc_select.dart';
 import 'invoice.dart';
 import 'map_page.dart';
-
+int fg=1;
 List cars=[
+
   {'name': 'Roshan','price':200},
   {'name': 'Rishi','price':200},
   {'name': 'Abhishek','price':200},
@@ -1941,7 +1942,9 @@ class _BookingConfirmationState extends State<BookingConfirmation>
                                                                           ),
                                                                         );
                                                                       }));
-                                                            })
+
+                                                            }
+                                                            )
                                                                 .values
                                                                 .toList(),
                                                           ),
@@ -1960,7 +1963,7 @@ class _BookingConfirmationState extends State<BookingConfirmation>
                                                                       child: Container(
                                                                         height:
                                                                          media.width *
-                                                                            1.2,
+                                                                            3,
 
                                                                         width: media.width * 1,
                                                                         decoration: BoxDecoration(
@@ -2002,6 +2005,7 @@ class _BookingConfirmationState extends State<BookingConfirmation>
                                                                                         height: 56,
                                                                                         child: TextField(
                                                                                           cursorColor: Colors.white,
+
                                                                                           decoration: InputDecoration(
                                                                                             prefixIcon: Icon(Icons.search),
                                                                                             fillColor: Colors.black.withOpacity(.8),
@@ -2056,7 +2060,9 @@ class _BookingConfirmationState extends State<BookingConfirmation>
                                                                               //Captain Detail card
                                                                               child:
                                                                               Column(
+
                                                                                   children: [
+
                                                                                     Container(
                                                                                       decoration: BoxDecoration(
                                                                                         color: Colors.white12,
@@ -2070,14 +2076,17 @@ class _BookingConfirmationState extends State<BookingConfirmation>
                                                                                             Row(
                                                                                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                                                               children: [
-                                                                                                Text('Ramesh',style: GoogleFonts.notoSans(color: Colors.white60,fontSize: 24,fontWeight: FontWeight.bold),),
-                                                                                                Text('₹ 50',style: GoogleFonts.notoSans(color: Colors.white60),),
+                                                                                                Text('Taj Kumar',style: GoogleFonts.notoSans(color: Colors.white60,fontSize: 24,fontWeight: FontWeight.bold),),
+                                                                                                Text(etaDetails[0]['currency']
+                                                                                                    + ' '  +
+                                                                                                    // '${(isOutStation && daysDifferenceRoundedUp == 0) ?
+                                                                                                    etaDetails[0]['total'].toStringAsFixed(2),style: GoogleFonts.notoSans(color: Colors.white60),),
                                                                                               ],
                                                                                             ),
                                                                                             Row(
                                                                                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                                                               children: [
-                                                                                                Text('Car Model',style: GoogleFonts.notoSans(color: Colors.white60,fontSize: 16),),
+                                                                                                Text('Mini',style: GoogleFonts.notoSans(color: Colors.white60,fontSize: 16),),
                                                                                                 // Text('12Min',style: GoogleFonts.notoSans(color: Colors.white60),),
                                                                                               ],
                                                                                             ),
@@ -2403,6 +2412,359 @@ class _BookingConfirmationState extends State<BookingConfirmation>
                                                                                         ),
                                                                                       ),
                                                                                     ),
+
+                                                                                    SizedBox(height: 16,),
+
+                                                                                    //sajay
+Container(
+                                                                        decoration: BoxDecoration(
+                                                                          color: Colors.white12,
+                                                                          borderRadius: BorderRadius.circular(16),
+                                                                        ),
+                                                                        child: Padding(
+                                                                          padding: const EdgeInsets.all(16.0),
+                                                                          child: Column(
+                                                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                                                            children: [
+                                                                              Row(
+                                                                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                                                children: [
+                                                                                  Text('Sanjay',style: GoogleFonts.notoSans(color: Colors.white60,fontSize: 24,fontWeight: FontWeight.bold),),
+                                                                                  Text(etaDetails[1]['currency']
+                                                                                      + ' '  +
+                                                                                      // '${(isOutStation && daysDifferenceRoundedUp == 0) ?
+                                                                                      etaDetails[1]['total'].toStringAsFixed(2),style: GoogleFonts.notoSans(color: Colors.white60),),
+                                                                                ],
+                                                                              ),
+                                                                              Row(
+                                                                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                                                children: [
+                                                                                  Text('Sedan',style: GoogleFonts.notoSans(color: Colors.white60,fontSize: 16),),
+                                                                                  // Text('12Min',style: GoogleFonts.notoSans(color: Colors.white60),),
+                                                                                ],
+                                                                              ),
+
+                                                                              SizedBox(
+                                                                                height: 8,
+                                                                              ),
+
+                                                                              Row(
+                                                                                children: [
+                                                                                  Icon(Icons.star_rounded,color: Colors.white60),
+                                                                                  Icon(Icons.star_rounded,color: Colors.white60),
+                                                                                  Icon(Icons.star_rounded,color: Colors.white60),
+                                                                                  Icon(Icons.star_rounded,color: Colors.white60),
+                                                                                  Icon(Icons.star_half_rounded,color: Colors.white60),
+                                                                                ],
+                                                                              ),
+
+                                                                              SizedBox(
+                                                                                height: 16,
+                                                                              ),
+
+                                                                              Row(
+                                                                                // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                                                children: [
+
+                                                                                  //Primary Button
+                                                                                  SizedBox(
+                                                                                    height:56,
+                                                                                    width: MediaQuery.of(context).size.width*0.38,
+                                                                                    child: ElevatedButton(
+                                                                                      child: Text('Book Ride',style: GoogleFonts.notoSans(
+                                                                                        color: Colors.white,
+
+                                                                                      ),),
+                                                                                      // Within the `FirstRoute` widget
+                                                                                      onPressed: () async {
+
+                                                                                        if ((widget.type ==
+                                                                                            2) ||
+                                                                                            (((rentalOption.isEmpty && (etaDetails[choosenVehicle]['user_wallet_balance'] >= etaDetails[choosenVehicle]['total'] && etaDetails[choosenVehicle]['has_discount'] == false) || (rentalOption.isEmpty && etaDetails[choosenVehicle]['has_discount'] == true && etaDetails[choosenVehicle]['user_wallet_balance'] >= etaDetails[choosenVehicle]['discounted_totel'])) ||
+                                                                                                (rentalOption.isEmpty &&
+                                                                                                    etaDetails[choosenVehicle]['payment_type'].toString().split(',').toList()[payingVia] !=
+                                                                                                        'wallet')) ||
+                                                                                                ((rentalOption.isNotEmpty && (etaDetails[0]['user_wallet_balance'] >= rentalOption[choosenVehicle]['fare_amount']) && rentalOption[choosenVehicle]['has_discount'] == false) ||
+                                                                                                    (rentalOption.isNotEmpty &&
+                                                                                                        rentalOption[choosenVehicle]['has_discount'] ==
+                                                                                                            true &&
+                                                                                                        etaDetails[0]['user_wallet_balance'] >=
+                                                                                                            rentalOption[choosenVehicle][
+                                                                                                            'discounted_totel']) ||
+                                                                                                    rentalOption.isNotEmpty &&
+                                                                                                        rentalOption[choosenVehicle]['payment_type'].toString().split(',').toList()[payingVia] !=
+                                                                                                            'wallet'))) {
+                                                                                          setState(() {
+                                                                                            _isLoading =
+                                                                                            true;
+                                                                                          });
+                                                                                          dropStopList
+                                                                                              .clear();
+                                                                                          dynamic result;
+                                                                                          if (choosenVehicle !=
+                                                                                              null) {
+                                                                                            if (widget
+                                                                                                .type !=
+                                                                                                1) {
+                                                                                              if (etaDetails[
+                                                                                              choosenVehicle]
+                                                                                              [
+                                                                                              'has_discount'] ==
+                                                                                                  false) {
+                                                                                                if (addressList
+                                                                                                    .length >
+                                                                                                    2) {
+                                                                                                  for (var i =
+                                                                                                  1;
+                                                                                                  i < addressList.length;
+                                                                                                  i++) {
+                                                                                                    dropStopList.add(DropStops(
+                                                                                                        order:
+                                                                                                        i.toString(),
+                                                                                                        latitude: addressList[i].latlng.latitude,
+                                                                                                        longitude: addressList[i].latlng.longitude,
+                                                                                                        address: addressList[i].address));
+                                                                                                  }
+                                                                                                }
+                                                                                                result =
+                                                                                                await createRequest();
+                                                                                                if (result ==
+                                                                                                    'logout') {
+                                                                                                  navigateLogout();
+                                                                                                }
+                                                                                              } else {
+                                                                                                if (addressList
+                                                                                                    .length >
+                                                                                                    2) {
+                                                                                                  for (var i =
+                                                                                                  1;
+                                                                                                  i < addressList.length;
+                                                                                                  i++) {
+                                                                                                    dropStopList.add(DropStops(
+                                                                                                        order:
+                                                                                                        i.toString(),
+                                                                                                        latitude: addressList[i].latlng.latitude,
+                                                                                                        longitude: addressList[i].latlng.longitude,
+                                                                                                        address: addressList[i].address));
+                                                                                                  }
+                                                                                                }
+                                                                                                result =
+                                                                                                await createRequestWithPromo();
+                                                                                                if (result ==
+                                                                                                    'logout') {
+                                                                                                  navigateLogout();
+                                                                                                }
+                                                                                              }
+                                                                                            } else {
+                                                                                              if (rentalOption[
+                                                                                              choosenVehicle]
+                                                                                              [
+                                                                                              'has_discount'] ==
+                                                                                                  false) {
+                                                                                                result =
+                                                                                                await createRentalRequest();
+                                                                                                if (result ==
+                                                                                                    'logout') {
+                                                                                                  navigateLogout();
+                                                                                                }
+                                                                                              } else {
+                                                                                                result =
+                                                                                                await createRentalRequestWithPromo();
+                                                                                                if (result ==
+                                                                                                    'logout') {
+                                                                                                  navigateLogout();
+                                                                                                }
+                                                                                              }
+                                                                                            }
+                                                                                          }
+                                                                                          if (result ==
+                                                                                              'success') {
+                                                                                            timer();
+                                                                                          }
+                                                                                          setState(() {
+                                                                                            _isLoading =
+                                                                                            false;
+                                                                                          });
+                                                                                        } else {
+                                                                                          setState(() {
+                                                                                            islowwalletbalance =
+                                                                                            true;
+                                                                                          });
+                                                                                        }
+                                                                                      },
+
+                                                                                      style: ElevatedButton.styleFrom(
+                                                                                          backgroundColor: Colors.black,
+                                                                                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24),),
+                                                                                          textStyle: GoogleFonts.notoSans(
+                                                                                            fontSize: 15,
+                                                                                            fontWeight: FontWeight.bold,
+                                                                                            color: Colors.white,
+                                                                                          )),
+                                                                                    ),
+                                                                                  ),
+
+                                                                                  SizedBox(width:MediaQuery.of(context).size.width*0.022),
+
+                                                                                  //Secondary Button
+                                                                                  SizedBox(
+                                                                                    height:56,
+                                                                                    width: MediaQuery.of(context).size.width*0.38,
+                                                                                    child: OutlinedButton(
+                                                                                      child: Text('View Details',style: GoogleFonts.notoSans(
+                                                                                          color: Colors.white
+                                                                                      ),),
+                                                                                      onPressed: () {
+                                                                                        showModalBottomSheet<void>(
+                                                                                            context: context,
+                                                                                            builder: (BuildContext context) {
+                                                                                              return Container(
+                                                                                                height: media.width*.7,
+                                                                                                width: MediaQuery.of(context).size.width,
+                                                                                                decoration: BoxDecoration(
+                                                                                                  color: Colors.black,
+
+                                                                                                ),
+                                                                                                child:
+                                                                                                Center(
+                                                                                                  child: Text('WE ARE STILL WORKING ON IT',
+                                                                                                      style:GoogleFonts.notoSans(
+                                                                                                          fontSize: 24,
+                                                                                                          fontWeight: FontWeight.w600,
+                                                                                                          color: Colors.white
+                                                                                                      )),
+                                                                                                ),
+                                                                                                // Padding(
+                                                                                                //   padding: const EdgeInsets.only(left:16,top:32),
+                                                                                                //   child: Column(
+                                                                                                //     mainAxisAlignment: MainAxisAlignment.start,
+                                                                                                //     crossAxisAlignment: CrossAxisAlignment.start,
+                                                                                                //     children: [
+                                                                                                //
+                                                                                                //       Row(
+                                                                                                //         mainAxisAlignment: MainAxisAlignment.start,
+                                                                                                //         crossAxisAlignment: CrossAxisAlignment.start,
+                                                                                                //         children: [
+                                                                                                //           CircleAvatar(
+                                                                                                //             radius: 40,
+                                                                                                //             backgroundColor: Colors.white,
+                                                                                                //             child: Image.asset('assets/images/profile.png'),
+                                                                                                //           ),
+                                                                                                //           SizedBox(width: MediaQuery.of(context).size.width*.02,),
+                                                                                                //           Column(
+                                                                                                //             crossAxisAlignment: CrossAxisAlignment.start,
+                                                                                                //             mainAxisAlignment: MainAxisAlignment.start,
+                                                                                                //             children: [
+                                                                                                //               Text('Driver Name',
+                                                                                                //                 style: GoogleFonts.notoSans(
+                                                                                                //                   color: Colors.white,
+                                                                                                //                   fontSize: 24,
+                                                                                                //                   fontWeight: FontWeight.w300,
+                                                                                                //                 ),),
+                                                                                                //               SizedBox(height: MediaQuery.of(context).size.width*.01,),
+                                                                                                //               Text('Car Model',
+                                                                                                //                 style: GoogleFonts.notoSans(
+                                                                                                //                   color: Colors.white24,
+                                                                                                //                   fontSize: 16,
+                                                                                                //                   fontWeight: FontWeight.w300,
+                                                                                                //                 ),),
+                                                                                                //               SizedBox(height: MediaQuery.of(context).size.width*.01,),
+                                                                                                //               Icon(Icons.star_rounded,color: Colors.white24,size: 24,),
+                                                                                                //
+                                                                                                //             ],
+                                                                                                //           ),
+                                                                                                //
+                                                                                                //         ],
+                                                                                                //       ),
+                                                                                                //       Padding(
+                                                                                                //         padding: const EdgeInsets.only(top:16),
+                                                                                                //         child: Row(
+                                                                                                //           children: [
+                                                                                                //             Container(
+                                                                                                //               height: MediaQuery.of(context).size.width*.13,
+                                                                                                //               width: MediaQuery.of(context).size.width*.45,
+                                                                                                //               decoration: BoxDecoration(
+                                                                                                //                 color: Colors.white10,
+                                                                                                //                 borderRadius: BorderRadius.circular(24),
+                                                                                                //
+                                                                                                //               ),
+                                                                                                //               child: Center(
+                                                                                                //                 child: Row(
+                                                                                                //                   crossAxisAlignment: CrossAxisAlignment.center,
+                                                                                                //                   mainAxisAlignment: MainAxisAlignment.center,
+                                                                                                //                   children: [
+                                                                                                //                     Icon(Icons.messenger_rounded,color: Colors.white24,size: 24,),
+                                                                                                //                     SizedBox(width: MediaQuery.of(context).size.width*.02,),
+                                                                                                //                     Text('Message Captain',
+                                                                                                //                       style: GoogleFonts.notoSans(
+                                                                                                //                         color: Colors.white70,
+                                                                                                //                         fontSize: 16,
+                                                                                                //                         fontWeight: FontWeight.w300,
+                                                                                                //                       ),),
+                                                                                                //                   ],
+                                                                                                //                 ),
+                                                                                                //               ),
+                                                                                                //             ),
+                                                                                                //
+                                                                                                //             SizedBox(width: MediaQuery.of(context).size.width*.02,),
+                                                                                                //
+                                                                                                //
+                                                                                                //             Container(
+                                                                                                //               height: MediaQuery.of(context).size.width*.13,
+                                                                                                //               width: MediaQuery.of(context).size.width*.45,
+                                                                                                //               decoration: BoxDecoration(
+                                                                                                //                 color: Colors.white10,
+                                                                                                //                 borderRadius: BorderRadius.circular(24),
+                                                                                                //
+                                                                                                //               ),
+                                                                                                //               child: Center(
+                                                                                                //                 child: Row(
+                                                                                                //                   crossAxisAlignment: CrossAxisAlignment.center,
+                                                                                                //                   mainAxisAlignment: MainAxisAlignment.center,
+                                                                                                //                   children: [
+                                                                                                //                     Icon(Icons.call_rounded,color: Colors.white24,size: 24,),
+                                                                                                //                     SizedBox(width: MediaQuery.of(context).size.width*.02,),
+                                                                                                //                     Text('Call Captain',
+                                                                                                //                       style: GoogleFonts.notoSans(
+                                                                                                //                         color: Colors.white70,
+                                                                                                //                         fontSize: 16,
+                                                                                                //                         fontWeight: FontWeight.w300,
+                                                                                                //                       ),),
+                                                                                                //                   ],
+                                                                                                //                 ),
+                                                                                                //               ),
+                                                                                                //             ),
+                                                                                                //           ],
+                                                                                                //         ),
+                                                                                                //       ),
+                                                                                                //
+                                                                                                //
+                                                                                                //     ],
+                                                                                                //   ),
+                                                                                                // ),
+                                                                                              );
+                                                                                            }
+                                                                                        );
+                                                                                      },
+
+                                                                                      style: ElevatedButton.styleFrom(
+                                                                                        // backgroundColor: Colors.white.withOpacity(.1),
+                                                                                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24),),
+                                                                                          textStyle: GoogleFonts.notoSans(
+                                                                                            fontSize: 15,
+                                                                                            fontWeight: FontWeight.bold,
+                                                                                            // color: Colors.white,
+                                                                                          )),
+                                                                                    ),
+                                                                                  ),
+                                                                                ],
+                                                                              ),
+
+
+                                                                            ],
+                                                                          ),
+                                                                        ),
+                                                                      ),
 
 
                                                                                   ]
