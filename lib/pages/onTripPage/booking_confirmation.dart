@@ -36,6 +36,14 @@ List cars=[
   {'name': 'Abhijeet','price':200},
 
 ];
+List itemList=[
+
+  {'name': 'Roshan','price':200,'total':250,'currency':'INR','type':'Mini'},
+  {'name': 'Rishi','price':200,'total':250,'currency':'INR','type':'Mini'},
+  {'name': 'Abhishek','price':200,'total':250,'currency':'INR','type':'Mini'},
+  {'name': 'Abhijeet','price':200,'total':250,'currency':'INR','type':'Mini'},
+
+];
 
 // ignore: must_be_immutable
 class BookingConfirmation extends StatefulWidget {
@@ -129,6 +137,7 @@ class _BookingConfirmationState extends State<BookingConfirmation>
   @override
   void initState() {
     WidgetsBinding.instance.addObserver(this);
+    driverRequest();
     promoCode = '';
     mapPadding = 0.0;
     promoStatus = null;
@@ -632,6 +641,7 @@ class _BookingConfirmationState extends State<BookingConfirmation>
 
     if (widget.type == 2) {
       var val = await etaRequest();
+      await driverRequest();
       if (val == 'logout') {
         navigateLogout();
       }
@@ -1952,952 +1962,370 @@ class _BookingConfirmationState extends State<BookingConfirmation>
                                                           //pro rider
                                                           InkWell(
                                                             onTap: () async {
-
-
                                                               showModalBottomSheet<void>(
                                                                 isScrollControlled: true,
-                                                                  context: context,
-                                                                  builder: (BuildContext context) {
-                                                                    return Padding(
-                                                                      padding:  EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
-                                                                      child: Container(
-                                                                        height:
-                                                                         media.width *
-                                                                            3,
-
-                                                                        width: media.width * 1,
-                                                                        decoration: BoxDecoration(
-                                                                          borderRadius:
-                                                                          const BorderRadius.only(
-                                                                              topLeft:
-                                                                              Radius.circular(24),
-                                                                              topRight:
-                                                                              Radius.circular(24)),
-                                                                          color: Colors.black,
+                                                                context: context,
+                                                                builder: (BuildContext context) {
+                                                                  return Padding(
+                                                                    padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+                                                                    child: Container(
+                                                                      height: media.width * 3,
+                                                                      width: media.width * 1,
+                                                                      decoration: BoxDecoration(
+                                                                        borderRadius: const BorderRadius.only(
+                                                                          topLeft: Radius.circular(24),
+                                                                          topRight: Radius.circular(24),
                                                                         ),
-                                                                        padding: EdgeInsets.all(
-                                                                            media.width * 0.05),
-                                                                        child:
+                                                                        color: Colors.black,
+                                                                      ),
+                                                                      padding: EdgeInsets.all(media.width * 0.05),
+                                                                      child: Column(
+                                                                        children: [
 
-                                                                        Column(
-                                                                          children: [
-
-                                                                            SizedBox(
-                                                                              height: 32,
-                                                                            ),
-
-                                                                            Text('Select Your Captain',style: GoogleFonts.notoSans(
+                                                                          SizedBox(
+                                                                            height: 32,
+                                                                          ),
+                                                                          Text(
+                                                                            'Select Your Captain',
+                                                                            style: GoogleFonts.notoSans(
                                                                               color: Colors.white,
                                                                               fontSize: 24,
                                                                               fontWeight: FontWeight.bold,
-
-                                                                            ),),
-
-                                                                            Padding(
-                                                                                padding:const EdgeInsets.only(top:8),
-                                                                                child: Row(
-                                                                                    mainAxisAlignment: MainAxisAlignment.center,
-
-                                                                                    children: [
-                                                                                      //search bar
-                                                                                      SizedBox(
-                                                                                        width:MediaQuery.of(context).size.width*0.6,
-                                                                                        height: 56,
-                                                                                        child: TextField(
-                                                                                          cursorColor: Colors.white,
-
-                                                                                          decoration: InputDecoration(
-                                                                                            prefixIcon: Icon(Icons.search),
-                                                                                            fillColor: Colors.black.withOpacity(.8),
-                                                                                            focusColor: Colors.white,
-                                                                                            focusedBorder: OutlineInputBorder(
-                                                                                              borderSide: BorderSide(color: Colors.white), // Set the color for focused border
-                                                                                              borderRadius: BorderRadius.circular(24),
-                                                                                            ),
-                                                                                            border: OutlineInputBorder(
-                                                                                              borderRadius: BorderRadius.circular(24),
-                                                                                            ),
-                                                                                            // labelText: 'Filled',
-                                                                                            hintText: 'Search By Name, Car Number, driver id..',
-                                                                                            hintStyle: GoogleFonts.notoSans(
-                                                                                                color: Colors.white24
-                                                                                            ),
-                                                                                            filled: true,
-                                                                                          ),
-                                                                                        ),),
-                                                                                      SizedBox(width:MediaQuery.of(context).size.width*0.01),
-
-                                                                                      Container(
-                                                                                        height: 40,
-                                                                                        width: 40,
-                                                                                        decoration: BoxDecoration(
-                                                                                            shape: BoxShape.circle,
-                                                                                            color:Colors.white.withOpacity(.1)
-                                                                                        ),
-                                                                                        child:Icon(Icons.downloading_sharp,
-                                                                                          color: Colors.white60,),
+                                                                            ),
+                                                                          ),
+                                                                          Padding(
+                                                                            padding: const EdgeInsets.only(top: 8),
+                                                                            child: Row(
+                                                                              mainAxisAlignment: MainAxisAlignment.center,
+                                                                              children: [
+                                                                                SizedBox(
+                                                                                  width: MediaQuery.of(context).size.width * 0.6,
+                                                                                  height: 56,
+                                                                                  child: TextField(
+                                                                                    cursorColor: Colors.white,
+                                                                                    decoration: InputDecoration(
+                                                                                      prefixIcon: Icon(Icons.search),
+                                                                                      fillColor: Colors.black.withOpacity(.8),
+                                                                                      focusColor: Colors.white,
+                                                                                      focusedBorder: OutlineInputBorder(
+                                                                                        borderSide: BorderSide(color: Colors.white), // Set the color for focused border
+                                                                                        borderRadius: BorderRadius.circular(24),
                                                                                       ),
-                                                                                      SizedBox(width:MediaQuery.of(context).size.width*0.01),
-
-                                                                                      //Referral Icon
-                                                                                      Container(
-                                                                                        height: 40,
-                                                                                        width: 40,
-                                                                                        decoration: BoxDecoration(
-                                                                                          shape: BoxShape.circle,
-                                                                                          color:Colors.white.withOpacity(.1),
-                                                                                        ),
-                                                                                        child:Icon(Icons.receipt_long_rounded,
-                                                                                            color: Colors.white60),
+                                                                                      border: OutlineInputBorder(
+                                                                                        borderRadius: BorderRadius.circular(24),
                                                                                       ),
-
-
-                                                                                    ])),
-
-                                                                            Padding(
-                                                                              padding: const EdgeInsets.only(left: 8.0,right: 8,top:16),
-
-                                                                              //Captain Detail card
-                                                                              child:
-                                                                              Column(
-
-                                                                                  children: [
-
-                                                                                    Container(
-                                                                                      decoration: BoxDecoration(
-                                                                                        color: Colors.white12,
-                                                                                        borderRadius: BorderRadius.circular(16),
-                                                                                      ),
-                                                                                      child: Padding(
-                                                                                        padding: const EdgeInsets.all(16.0),
-                                                                                        child: Column(
-                                                                                          crossAxisAlignment: CrossAxisAlignment.start,
-                                                                                          children: [
-                                                                                            Row(
-                                                                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                                                              children: [
-                                                                                                Text('Taj Kumar',style: GoogleFonts.notoSans(color: Colors.white60,fontSize: 24,fontWeight: FontWeight.bold),),
-                                                                                                Text(etaDetails[0]['currency']
-                                                                                                    + ' '  +
-                                                                                                    // '${(isOutStation && daysDifferenceRoundedUp == 0) ?
-                                                                                                    etaDetails[0]['total'].toStringAsFixed(2),style: GoogleFonts.notoSans(color: Colors.white60),),
-                                                                                              ],
-                                                                                            ),
-                                                                                            Row(
-                                                                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                                                              children: [
-                                                                                                Text('Mini',style: GoogleFonts.notoSans(color: Colors.white60,fontSize: 16),),
-                                                                                                // Text('12Min',style: GoogleFonts.notoSans(color: Colors.white60),),
-                                                                                              ],
-                                                                                            ),
-
-                                                                                            SizedBox(
-                                                                                              height: 8,
-                                                                                            ),
-
-                                                                                            Row(
-                                                                                              children: [
-                                                                                                Icon(Icons.star_rounded,color: Colors.white60),
-                                                                                                Icon(Icons.star_rounded,color: Colors.white60),
-                                                                                                Icon(Icons.star_rounded,color: Colors.white60),
-                                                                                                Icon(Icons.star_rounded,color: Colors.white60),
-                                                                                                Icon(Icons.star_half_rounded,color: Colors.white60),
-                                                                                              ],
-                                                                                            ),
-
-                                                                                            SizedBox(
-                                                                                              height: 16,
-                                                                                            ),
-
-                                                                                            Row(
-                                                                                              // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                                                              children: [
-
-                                                                                                //Primary Button
-                                                                                                SizedBox(
-                                                                                                  height:56,
-                                                                                                  width: MediaQuery.of(context).size.width*0.38,
-                                                                                                  child: ElevatedButton(
-                                                                                                    child: Text('Book Ride',style: GoogleFonts.notoSans(
-                                                                                                      color: Colors.white,
-
-                                                                                                    ),),
-                                                                                                    // Within the `FirstRoute` widget
-                                                                                                    onPressed: () async {
-
-                                                                                                      if ((widget.type ==
-                                                                                                          2) ||
-                                                                                                          (((rentalOption.isEmpty && (etaDetails[choosenVehicle]['user_wallet_balance'] >= etaDetails[choosenVehicle]['total'] && etaDetails[choosenVehicle]['has_discount'] == false) || (rentalOption.isEmpty && etaDetails[choosenVehicle]['has_discount'] == true && etaDetails[choosenVehicle]['user_wallet_balance'] >= etaDetails[choosenVehicle]['discounted_totel'])) ||
-                                                                                                              (rentalOption.isEmpty &&
-                                                                                                                  etaDetails[choosenVehicle]['payment_type'].toString().split(',').toList()[payingVia] !=
-                                                                                                                      'wallet')) ||
-                                                                                                              ((rentalOption.isNotEmpty && (etaDetails[0]['user_wallet_balance'] >= rentalOption[choosenVehicle]['fare_amount']) && rentalOption[choosenVehicle]['has_discount'] == false) ||
-                                                                                                                  (rentalOption.isNotEmpty &&
-                                                                                                                      rentalOption[choosenVehicle]['has_discount'] ==
-                                                                                                                          true &&
-                                                                                                                      etaDetails[0]['user_wallet_balance'] >=
-                                                                                                                          rentalOption[choosenVehicle][
-                                                                                                                          'discounted_totel']) ||
-                                                                                                                  rentalOption.isNotEmpty &&
-                                                                                                                      rentalOption[choosenVehicle]['payment_type'].toString().split(',').toList()[payingVia] !=
-                                                                                                                          'wallet'))) {
-                                                                                                        setState(() {
-                                                                                                          _isLoading =
-                                                                                                          true;
-                                                                                                        });
-                                                                                                        dropStopList
-                                                                                                            .clear();
-                                                                                                        dynamic result;
-                                                                                                        if (choosenVehicle !=
-                                                                                                            null) {
-                                                                                                          if (widget
-                                                                                                              .type !=
-                                                                                                              1) {
-                                                                                                            if (etaDetails[
-                                                                                                            choosenVehicle]
-                                                                                                            [
-                                                                                                            'has_discount'] ==
-                                                                                                                false) {
-                                                                                                              if (addressList
-                                                                                                                  .length >
-                                                                                                                  2) {
-                                                                                                                for (var i =
-                                                                                                                1;
-                                                                                                                i < addressList.length;
-                                                                                                                i++) {
-                                                                                                                  dropStopList.add(DropStops(
-                                                                                                                      order:
-                                                                                                                      i.toString(),
-                                                                                                                      latitude: addressList[i].latlng.latitude,
-                                                                                                                      longitude: addressList[i].latlng.longitude,
-                                                                                                                      address: addressList[i].address));
-                                                                                                                }
-                                                                                                              }
-                                                                                                              result =
-                                                                                                                  await createRequest();
-                                                                                                              if (result ==
-                                                                                                                  'logout') {
-                                                                                                                navigateLogout();
-                                                                                                              }
-                                                                                                            } else {
-                                                                                                              if (addressList
-                                                                                                                  .length >
-                                                                                                                  2) {
-                                                                                                                for (var i =
-                                                                                                                1;
-                                                                                                                i < addressList.length;
-                                                                                                                i++) {
-                                                                                                                  dropStopList.add(DropStops(
-                                                                                                                      order:
-                                                                                                                      i.toString(),
-                                                                                                                      latitude: addressList[i].latlng.latitude,
-                                                                                                                      longitude: addressList[i].latlng.longitude,
-                                                                                                                      address: addressList[i].address));
-                                                                                                                }
-                                                                                                              }
-                                                                                                              result =
-                                                                                                                  await createRequestWithPromo();
-                                                                                                              if (result ==
-                                                                                                                  'logout') {
-                                                                                                                navigateLogout();
-                                                                                                              }
-                                                                                                            }
-                                                                                                          } else {
-                                                                                                            if (rentalOption[
-                                                                                                            choosenVehicle]
-                                                                                                            [
-                                                                                                            'has_discount'] ==
-                                                                                                                false) {
-                                                                                                              result =
-                                                                                                                  await createRentalRequest();
-                                                                                                              if (result ==
-                                                                                                                  'logout') {
-                                                                                                                navigateLogout();
-                                                                                                              }
-                                                                                                            } else {
-                                                                                                              result =
-                                                                                                                  await createRentalRequestWithPromo();
-                                                                                                              if (result ==
-                                                                                                                  'logout') {
-                                                                                                                navigateLogout();
-                                                                                                              }
-                                                                                                            }
-                                                                                                          }
-                                                                                                        }
-                                                                                                        if (result ==
-                                                                                                            'success') {
-                                                                                                          timer();
-                                                                                                        }
-                                                                                                        setState(() {
-                                                                                                          _isLoading =
-                                                                                                          false;
-                                                                                                        });
-                                                                                                      } else {
-                                                                                                        setState(() {
-                                                                                                          islowwalletbalance =
-                                                                                                          true;
-                                                                                                        });
-                                                                                                      }
-                                                                                                    },
-
-                                                                                                    style: ElevatedButton.styleFrom(
-                                                                                                        backgroundColor: Colors.black,
-                                                                                                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24),),
-                                                                                                        textStyle: GoogleFonts.notoSans(
-                                                                                                          fontSize: 15,
-                                                                                                          fontWeight: FontWeight.bold,
-                                                                                                          color: Colors.white,
-                                                                                                        )),
-                                                                                                  ),
-                                                                                                ),
-
-                                                                                                SizedBox(width:MediaQuery.of(context).size.width*0.022),
-
-                                                                                                //Secondary Button
-                                                                                                SizedBox(
-                                                                                                  height:56,
-                                                                                                  width: MediaQuery.of(context).size.width*0.38,
-                                                                                                  child: OutlinedButton(
-                                                                                                    child: Text('View Details',style: GoogleFonts.notoSans(
-                                                                                                        color: Colors.white
-                                                                                                    ),),
-                                                                                                    onPressed: () {
-                                                                                                      showModalBottomSheet<void>(
-                                                                                                          context: context,
-                                                                                                          builder: (BuildContext context) {
-                                                                                                            return Container(
-                                                                                                              height: media.width*.7,
-                                                                                                              width: MediaQuery.of(context).size.width,
-                                                                                                              decoration: BoxDecoration(
-                                                                                                                color: Colors.black,
-
-                                                                                                              ),
-                                                                                                              child:
-                                                                                                                Center(
-                                                                                                                  child: Text('WE ARE STILL WORKING ON IT',
-                                                                                                                      style:GoogleFonts.notoSans(
-                                                                                                                      fontSize: 24,
-                                                                                                                      fontWeight: FontWeight.w600,
-                                                                                                                      color: Colors.white
-                                                                                                                  )),
-                                                                                                                ),
-                                                                                                              // Padding(
-                                                                                                              //   padding: const EdgeInsets.only(left:16,top:32),
-                                                                                                              //   child: Column(
-                                                                                                              //     mainAxisAlignment: MainAxisAlignment.start,
-                                                                                                              //     crossAxisAlignment: CrossAxisAlignment.start,
-                                                                                                              //     children: [
-                                                                                                              //
-                                                                                                              //       Row(
-                                                                                                              //         mainAxisAlignment: MainAxisAlignment.start,
-                                                                                                              //         crossAxisAlignment: CrossAxisAlignment.start,
-                                                                                                              //         children: [
-                                                                                                              //           CircleAvatar(
-                                                                                                              //             radius: 40,
-                                                                                                              //             backgroundColor: Colors.white,
-                                                                                                              //             child: Image.asset('assets/images/profile.png'),
-                                                                                                              //           ),
-                                                                                                              //           SizedBox(width: MediaQuery.of(context).size.width*.02,),
-                                                                                                              //           Column(
-                                                                                                              //             crossAxisAlignment: CrossAxisAlignment.start,
-                                                                                                              //             mainAxisAlignment: MainAxisAlignment.start,
-                                                                                                              //             children: [
-                                                                                                              //               Text('Driver Name',
-                                                                                                              //                 style: GoogleFonts.notoSans(
-                                                                                                              //                   color: Colors.white,
-                                                                                                              //                   fontSize: 24,
-                                                                                                              //                   fontWeight: FontWeight.w300,
-                                                                                                              //                 ),),
-                                                                                                              //               SizedBox(height: MediaQuery.of(context).size.width*.01,),
-                                                                                                              //               Text('Car Model',
-                                                                                                              //                 style: GoogleFonts.notoSans(
-                                                                                                              //                   color: Colors.white24,
-                                                                                                              //                   fontSize: 16,
-                                                                                                              //                   fontWeight: FontWeight.w300,
-                                                                                                              //                 ),),
-                                                                                                              //               SizedBox(height: MediaQuery.of(context).size.width*.01,),
-                                                                                                              //               Icon(Icons.star_rounded,color: Colors.white24,size: 24,),
-                                                                                                              //
-                                                                                                              //             ],
-                                                                                                              //           ),
-                                                                                                              //
-                                                                                                              //         ],
-                                                                                                              //       ),
-                                                                                                              //       Padding(
-                                                                                                              //         padding: const EdgeInsets.only(top:16),
-                                                                                                              //         child: Row(
-                                                                                                              //           children: [
-                                                                                                              //             Container(
-                                                                                                              //               height: MediaQuery.of(context).size.width*.13,
-                                                                                                              //               width: MediaQuery.of(context).size.width*.45,
-                                                                                                              //               decoration: BoxDecoration(
-                                                                                                              //                 color: Colors.white10,
-                                                                                                              //                 borderRadius: BorderRadius.circular(24),
-                                                                                                              //
-                                                                                                              //               ),
-                                                                                                              //               child: Center(
-                                                                                                              //                 child: Row(
-                                                                                                              //                   crossAxisAlignment: CrossAxisAlignment.center,
-                                                                                                              //                   mainAxisAlignment: MainAxisAlignment.center,
-                                                                                                              //                   children: [
-                                                                                                              //                     Icon(Icons.messenger_rounded,color: Colors.white24,size: 24,),
-                                                                                                              //                     SizedBox(width: MediaQuery.of(context).size.width*.02,),
-                                                                                                              //                     Text('Message Captain',
-                                                                                                              //                       style: GoogleFonts.notoSans(
-                                                                                                              //                         color: Colors.white70,
-                                                                                                              //                         fontSize: 16,
-                                                                                                              //                         fontWeight: FontWeight.w300,
-                                                                                                              //                       ),),
-                                                                                                              //                   ],
-                                                                                                              //                 ),
-                                                                                                              //               ),
-                                                                                                              //             ),
-                                                                                                              //
-                                                                                                              //             SizedBox(width: MediaQuery.of(context).size.width*.02,),
-                                                                                                              //
-                                                                                                              //
-                                                                                                              //             Container(
-                                                                                                              //               height: MediaQuery.of(context).size.width*.13,
-                                                                                                              //               width: MediaQuery.of(context).size.width*.45,
-                                                                                                              //               decoration: BoxDecoration(
-                                                                                                              //                 color: Colors.white10,
-                                                                                                              //                 borderRadius: BorderRadius.circular(24),
-                                                                                                              //
-                                                                                                              //               ),
-                                                                                                              //               child: Center(
-                                                                                                              //                 child: Row(
-                                                                                                              //                   crossAxisAlignment: CrossAxisAlignment.center,
-                                                                                                              //                   mainAxisAlignment: MainAxisAlignment.center,
-                                                                                                              //                   children: [
-                                                                                                              //                     Icon(Icons.call_rounded,color: Colors.white24,size: 24,),
-                                                                                                              //                     SizedBox(width: MediaQuery.of(context).size.width*.02,),
-                                                                                                              //                     Text('Call Captain',
-                                                                                                              //                       style: GoogleFonts.notoSans(
-                                                                                                              //                         color: Colors.white70,
-                                                                                                              //                         fontSize: 16,
-                                                                                                              //                         fontWeight: FontWeight.w300,
-                                                                                                              //                       ),),
-                                                                                                              //                   ],
-                                                                                                              //                 ),
-                                                                                                              //               ),
-                                                                                                              //             ),
-                                                                                                              //           ],
-                                                                                                              //         ),
-                                                                                                              //       ),
-                                                                                                              //
-                                                                                                              //
-                                                                                                              //     ],
-                                                                                                              //   ),
-                                                                                                              // ),
-                                                                                                            );
-                                                                                                          }
-                                                                                                      );
-                                                                                                    },
-
-                                                                                                    style: ElevatedButton.styleFrom(
-                                                                                                      // backgroundColor: Colors.white.withOpacity(.1),
-                                                                                                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24),),
-                                                                                                        textStyle: GoogleFonts.notoSans(
-                                                                                                          fontSize: 15,
-                                                                                                          fontWeight: FontWeight.bold,
-                                                                                                          // color: Colors.white,
-                                                                                                        )),
-                                                                                                  ),
-                                                                                                ),
-                                                                                              ],
-                                                                                            ),
-
-
-                                                                                          ],
-                                                                                        ),
-                                                                                      ),
-                                                                                    ),
-
-                                                                                    SizedBox(height: 16,),
-
-                                                                                    //sajay
-Container(
-                                                                        decoration: BoxDecoration(
-                                                                          color: Colors.white12,
-                                                                          borderRadius: BorderRadius.circular(16),
-                                                                        ),
-                                                                        child: Padding(
-                                                                          padding: const EdgeInsets.all(16.0),
-                                                                          child: Column(
-                                                                            crossAxisAlignment: CrossAxisAlignment.start,
-                                                                            children: [
-                                                                              Row(
-                                                                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                                                children: [
-                                                                                  Text('Sanjay',style: GoogleFonts.notoSans(color: Colors.white60,fontSize: 24,fontWeight: FontWeight.bold),),
-                                                                                  Text(etaDetails[1]['currency']
-                                                                                      + ' '  +
-                                                                                      // '${(isOutStation && daysDifferenceRoundedUp == 0) ?
-                                                                                      etaDetails[1]['total'].toStringAsFixed(2),style: GoogleFonts.notoSans(color: Colors.white60),),
-                                                                                ],
-                                                                              ),
-                                                                              Row(
-                                                                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                                                children: [
-                                                                                  Text('Sedan',style: GoogleFonts.notoSans(color: Colors.white60,fontSize: 16),),
-                                                                                  // Text('12Min',style: GoogleFonts.notoSans(color: Colors.white60),),
-                                                                                ],
-                                                                              ),
-
-                                                                              SizedBox(
-                                                                                height: 8,
-                                                                              ),
-
-                                                                              Row(
-                                                                                children: [
-                                                                                  Icon(Icons.star_rounded,color: Colors.white60),
-                                                                                  Icon(Icons.star_rounded,color: Colors.white60),
-                                                                                  Icon(Icons.star_rounded,color: Colors.white60),
-                                                                                  Icon(Icons.star_rounded,color: Colors.white60),
-                                                                                  Icon(Icons.star_half_rounded,color: Colors.white60),
-                                                                                ],
-                                                                              ),
-
-                                                                              SizedBox(
-                                                                                height: 16,
-                                                                              ),
-
-                                                                              Row(
-                                                                                // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                                                children: [
-
-                                                                                  //Primary Button
-                                                                                  SizedBox(
-                                                                                    height:56,
-                                                                                    width: MediaQuery.of(context).size.width*0.38,
-                                                                                    child: ElevatedButton(
-                                                                                      child: Text('Book Ride',style: GoogleFonts.notoSans(
-                                                                                        color: Colors.white,
-
-                                                                                      ),),
-                                                                                      // Within the `FirstRoute` widget
-                                                                                      onPressed: () async {
-
-                                                                                        if ((widget.type ==
-                                                                                            2) ||
-                                                                                            (((rentalOption.isEmpty && (etaDetails[choosenVehicle]['user_wallet_balance'] >= etaDetails[choosenVehicle]['total'] && etaDetails[choosenVehicle]['has_discount'] == false) || (rentalOption.isEmpty && etaDetails[choosenVehicle]['has_discount'] == true && etaDetails[choosenVehicle]['user_wallet_balance'] >= etaDetails[choosenVehicle]['discounted_totel'])) ||
-                                                                                                (rentalOption.isEmpty &&
-                                                                                                    etaDetails[choosenVehicle]['payment_type'].toString().split(',').toList()[payingVia] !=
-                                                                                                        'wallet')) ||
-                                                                                                ((rentalOption.isNotEmpty && (etaDetails[0]['user_wallet_balance'] >= rentalOption[choosenVehicle]['fare_amount']) && rentalOption[choosenVehicle]['has_discount'] == false) ||
-                                                                                                    (rentalOption.isNotEmpty &&
-                                                                                                        rentalOption[choosenVehicle]['has_discount'] ==
-                                                                                                            true &&
-                                                                                                        etaDetails[0]['user_wallet_balance'] >=
-                                                                                                            rentalOption[choosenVehicle][
-                                                                                                            'discounted_totel']) ||
-                                                                                                    rentalOption.isNotEmpty &&
-                                                                                                        rentalOption[choosenVehicle]['payment_type'].toString().split(',').toList()[payingVia] !=
-                                                                                                            'wallet'))) {
-                                                                                          setState(() {
-                                                                                            _isLoading =
-                                                                                            true;
-                                                                                          });
-                                                                                          dropStopList
-                                                                                              .clear();
-                                                                                          dynamic result;
-                                                                                          if (choosenVehicle !=
-                                                                                              null) {
-                                                                                            if (widget
-                                                                                                .type !=
-                                                                                                1) {
-                                                                                              if (etaDetails[
-                                                                                              choosenVehicle]
-                                                                                              [
-                                                                                              'has_discount'] ==
-                                                                                                  false) {
-                                                                                                if (addressList
-                                                                                                    .length >
-                                                                                                    2) {
-                                                                                                  for (var i =
-                                                                                                  1;
-                                                                                                  i < addressList.length;
-                                                                                                  i++) {
-                                                                                                    dropStopList.add(DropStops(
-                                                                                                        order:
-                                                                                                        i.toString(),
-                                                                                                        latitude: addressList[i].latlng.latitude,
-                                                                                                        longitude: addressList[i].latlng.longitude,
-                                                                                                        address: addressList[i].address));
-                                                                                                  }
-                                                                                                }
-                                                                                                result =
-                                                                                                await createRequest();
-                                                                                                if (result ==
-                                                                                                    'logout') {
-                                                                                                  navigateLogout();
-                                                                                                }
-                                                                                              } else {
-                                                                                                if (addressList
-                                                                                                    .length >
-                                                                                                    2) {
-                                                                                                  for (var i =
-                                                                                                  1;
-                                                                                                  i < addressList.length;
-                                                                                                  i++) {
-                                                                                                    dropStopList.add(DropStops(
-                                                                                                        order:
-                                                                                                        i.toString(),
-                                                                                                        latitude: addressList[i].latlng.latitude,
-                                                                                                        longitude: addressList[i].latlng.longitude,
-                                                                                                        address: addressList[i].address));
-                                                                                                  }
-                                                                                                }
-                                                                                                result =
-                                                                                                await createRequestWithPromo();
-                                                                                                if (result ==
-                                                                                                    'logout') {
-                                                                                                  navigateLogout();
-                                                                                                }
-                                                                                              }
-                                                                                            } else {
-                                                                                              if (rentalOption[
-                                                                                              choosenVehicle]
-                                                                                              [
-                                                                                              'has_discount'] ==
-                                                                                                  false) {
-                                                                                                result =
-                                                                                                await createRentalRequest();
-                                                                                                if (result ==
-                                                                                                    'logout') {
-                                                                                                  navigateLogout();
-                                                                                                }
-                                                                                              } else {
-                                                                                                result =
-                                                                                                await createRentalRequestWithPromo();
-                                                                                                if (result ==
-                                                                                                    'logout') {
-                                                                                                  navigateLogout();
-                                                                                                }
-                                                                                              }
-                                                                                            }
-                                                                                          }
-                                                                                          if (result ==
-                                                                                              'success') {
-                                                                                            timer();
-                                                                                          }
-                                                                                          setState(() {
-                                                                                            _isLoading =
-                                                                                            false;
-                                                                                          });
-                                                                                        } else {
-                                                                                          setState(() {
-                                                                                            islowwalletbalance =
-                                                                                            true;
-                                                                                          });
-                                                                                        }
-                                                                                      },
-
-                                                                                      style: ElevatedButton.styleFrom(
-                                                                                          backgroundColor: Colors.black,
-                                                                                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24),),
-                                                                                          textStyle: GoogleFonts.notoSans(
-                                                                                            fontSize: 15,
-                                                                                            fontWeight: FontWeight.bold,
-                                                                                            color: Colors.white,
-                                                                                          )),
+                                                                                      hintText: 'Search By Name, Car Number, driver id..',
+                                                                                      hintStyle: GoogleFonts.notoSans(color: Colors.white24),
+                                                                                      filled: true,
                                                                                     ),
                                                                                   ),
+                                                                                ),
+                                                                                SizedBox(width: MediaQuery.of(context).size.width * 0.01),
+                                                                                Container(
+                                                                                  height: 40,
+                                                                                  width: 40,
+                                                                                  decoration: BoxDecoration(
+                                                                                    shape: BoxShape.circle,
+                                                                                    color: Colors.white.withOpacity(.1),
+                                                                                  ),
+                                                                                  child: Icon(
+                                                                                    Icons.downloading_sharp,
+                                                                                    color: Colors.white60,
+                                                                                  ),
+                                                                                ),
+                                                                                SizedBox(width: MediaQuery.of(context).size.width * 0.01),
+                                                                                Container(
+                                                                                  height: 40,
+                                                                                  width: 40,
+                                                                                  decoration: BoxDecoration(
+                                                                                    shape: BoxShape.circle,
+                                                                                    color: Colors.white.withOpacity(.1),
+                                                                                  ),
+                                                                                  child: Icon(Icons.receipt_long_rounded, color: Colors.white60),
+                                                                                ),
+                                                                              ],
+                                                                            ),
+                                                                          ),
+                                                                          SizedBox(
+                                                                            height: 22,
+                                                                          ),
 
-                                                                                  SizedBox(width:MediaQuery.of(context).size.width*0.022),
-
-                                                                                  //Secondary Button
-                                                                                  SizedBox(
-                                                                                    height:56,
-                                                                                    width: MediaQuery.of(context).size.width*0.38,
-                                                                                    child: OutlinedButton(
-                                                                                      child: Text('View Details',style: GoogleFonts.notoSans(
-                                                                                          color: Colors.white
-                                                                                      ),),
-                                                                                      onPressed: () {
-                                                                                        showModalBottomSheet<void>(
-                                                                                            context: context,
-                                                                                            builder: (BuildContext context) {
-                                                                                              return Container(
-                                                                                                height: media.width*.7,
-                                                                                                width: MediaQuery.of(context).size.width,
-                                                                                                decoration: BoxDecoration(
-                                                                                                  color: Colors.black,
-
+                                                                          Expanded(
+                                                                            child: ListView.separated(
+                                                                              itemCount: driverDetails.length,
+                                                                              separatorBuilder: (BuildContext context, int index) {
+                                                                                return SizedBox(height: 16); // Adjust the height according to your preference
+                                                                              },
+                                                                              itemBuilder: (BuildContext context, int index) {
+                                                                                return Column(
+                                                                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                                                                  children: [
+                                                                                    ListView.builder(
+                                                                                      shrinkWrap: true,
+                                                                                      physics: NeverScrollableScrollPhysics(),
+                                                                                      itemCount: driverDetails[index]['drivers'].length,
+                                                                                      itemBuilder: (BuildContext context, int driverIndex) {
+                                                                                        final driver = driverDetails[index]['drivers'][driverIndex];
+                                                                                        return Container(
+                                                                                          margin: EdgeInsets.symmetric(vertical: 8), // Add margin to create space between items
+                                                                                          decoration: BoxDecoration(
+                                                                                            color: Colors.white12,
+                                                                                            borderRadius: BorderRadius.circular(16),
+                                                                                          ),
+                                                                                          child: Padding(
+                                                                                            padding: const EdgeInsets.all(16.0),
+                                                                                            child: Column(
+                                                                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                                                                              children: [
+                                                                                                Row(
+                                                                                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                                                                  children: [
+                                                                                                    Text(
+                                                                                                      driver['name'],
+                                                                                                      style: GoogleFonts.notoSans(
+                                                                                                        color: Colors.white60,
+                                                                                                        fontSize: 24,
+                                                                                                        fontWeight: FontWeight.bold,
+                                                                                                      ),
+                                                                                                    ),
+                                                                                                    Text(
+                                                                                                      'INR' + ' ' +   driverDetails[index]['total'].toStringAsFixed(2),
+                                                                                                      style: GoogleFonts.notoSans(color: Colors.white60),
+                                                                                                    ),
+                                                                                                  ],
                                                                                                 ),
-                                                                                                child:
-                                                                                                Center(
-                                                                                                  child: Text('WE ARE STILL WORKING ON IT',
-                                                                                                      style:GoogleFonts.notoSans(
-                                                                                                          fontSize: 24,
-                                                                                                          fontWeight: FontWeight.w600,
-                                                                                                          color: Colors.white
-                                                                                                      )),
+                                                                                                Text(
+                                                                                                  driverDetails[index]['name'],
+                                                                                                  style: TextStyle(
+                                                                                                    color: Colors.white60,
+                                                                                                    fontSize: 16,
+                                                                                                    fontWeight: FontWeight.bold,
+                                                                                                  ),
                                                                                                 ),
-                                                                                                // Padding(
-                                                                                                //   padding: const EdgeInsets.only(left:16,top:32),
-                                                                                                //   child: Column(
-                                                                                                //     mainAxisAlignment: MainAxisAlignment.start,
-                                                                                                //     crossAxisAlignment: CrossAxisAlignment.start,
-                                                                                                //     children: [
-                                                                                                //
-                                                                                                //       Row(
-                                                                                                //         mainAxisAlignment: MainAxisAlignment.start,
-                                                                                                //         crossAxisAlignment: CrossAxisAlignment.start,
-                                                                                                //         children: [
-                                                                                                //           CircleAvatar(
-                                                                                                //             radius: 40,
-                                                                                                //             backgroundColor: Colors.white,
-                                                                                                //             child: Image.asset('assets/images/profile.png'),
-                                                                                                //           ),
-                                                                                                //           SizedBox(width: MediaQuery.of(context).size.width*.02,),
-                                                                                                //           Column(
-                                                                                                //             crossAxisAlignment: CrossAxisAlignment.start,
-                                                                                                //             mainAxisAlignment: MainAxisAlignment.start,
-                                                                                                //             children: [
-                                                                                                //               Text('Driver Name',
-                                                                                                //                 style: GoogleFonts.notoSans(
-                                                                                                //                   color: Colors.white,
-                                                                                                //                   fontSize: 24,
-                                                                                                //                   fontWeight: FontWeight.w300,
-                                                                                                //                 ),),
-                                                                                                //               SizedBox(height: MediaQuery.of(context).size.width*.01,),
-                                                                                                //               Text('Car Model',
-                                                                                                //                 style: GoogleFonts.notoSans(
-                                                                                                //                   color: Colors.white24,
-                                                                                                //                   fontSize: 16,
-                                                                                                //                   fontWeight: FontWeight.w300,
-                                                                                                //                 ),),
-                                                                                                //               SizedBox(height: MediaQuery.of(context).size.width*.01,),
-                                                                                                //               Icon(Icons.star_rounded,color: Colors.white24,size: 24,),
-                                                                                                //
-                                                                                                //             ],
-                                                                                                //           ),
-                                                                                                //
-                                                                                                //         ],
-                                                                                                //       ),
-                                                                                                //       Padding(
-                                                                                                //         padding: const EdgeInsets.only(top:16),
-                                                                                                //         child: Row(
-                                                                                                //           children: [
-                                                                                                //             Container(
-                                                                                                //               height: MediaQuery.of(context).size.width*.13,
-                                                                                                //               width: MediaQuery.of(context).size.width*.45,
-                                                                                                //               decoration: BoxDecoration(
-                                                                                                //                 color: Colors.white10,
-                                                                                                //                 borderRadius: BorderRadius.circular(24),
-                                                                                                //
-                                                                                                //               ),
-                                                                                                //               child: Center(
-                                                                                                //                 child: Row(
-                                                                                                //                   crossAxisAlignment: CrossAxisAlignment.center,
-                                                                                                //                   mainAxisAlignment: MainAxisAlignment.center,
-                                                                                                //                   children: [
-                                                                                                //                     Icon(Icons.messenger_rounded,color: Colors.white24,size: 24,),
-                                                                                                //                     SizedBox(width: MediaQuery.of(context).size.width*.02,),
-                                                                                                //                     Text('Message Captain',
-                                                                                                //                       style: GoogleFonts.notoSans(
-                                                                                                //                         color: Colors.white70,
-                                                                                                //                         fontSize: 16,
-                                                                                                //                         fontWeight: FontWeight.w300,
-                                                                                                //                       ),),
-                                                                                                //                   ],
-                                                                                                //                 ),
-                                                                                                //               ),
-                                                                                                //             ),
-                                                                                                //
-                                                                                                //             SizedBox(width: MediaQuery.of(context).size.width*.02,),
-                                                                                                //
-                                                                                                //
-                                                                                                //             Container(
-                                                                                                //               height: MediaQuery.of(context).size.width*.13,
-                                                                                                //               width: MediaQuery.of(context).size.width*.45,
-                                                                                                //               decoration: BoxDecoration(
-                                                                                                //                 color: Colors.white10,
-                                                                                                //                 borderRadius: BorderRadius.circular(24),
-                                                                                                //
-                                                                                                //               ),
-                                                                                                //               child: Center(
-                                                                                                //                 child: Row(
-                                                                                                //                   crossAxisAlignment: CrossAxisAlignment.center,
-                                                                                                //                   mainAxisAlignment: MainAxisAlignment.center,
-                                                                                                //                   children: [
-                                                                                                //                     Icon(Icons.call_rounded,color: Colors.white24,size: 24,),
-                                                                                                //                     SizedBox(width: MediaQuery.of(context).size.width*.02,),
-                                                                                                //                     Text('Call Captain',
-                                                                                                //                       style: GoogleFonts.notoSans(
-                                                                                                //                         color: Colors.white70,
-                                                                                                //                         fontSize: 16,
-                                                                                                //                         fontWeight: FontWeight.w300,
-                                                                                                //                       ),),
-                                                                                                //                   ],
-                                                                                                //                 ),
-                                                                                                //               ),
-                                                                                                //             ),
-                                                                                                //           ],
-                                                                                                //         ),
-                                                                                                //       ),
-                                                                                                //
-                                                                                                //
-                                                                                                //     ],
-                                                                                                //   ),
-                                                                                                // ),
-                                                                                              );
-                                                                                            }
+                                                                                                Row(
+                                                                                                  children: [
+                                                                                                    Icon(Icons.star_rounded, color: Colors.white60),
+                                                                                                    Icon(Icons.star_rounded, color: Colors.white60),
+                                                                                                    Icon(Icons.star_rounded, color: Colors.white60),
+                                                                                                    Icon(Icons.star_rounded, color: Colors.white60),
+                                                                                                    Icon(Icons.star_half_rounded, color: Colors.white60),
+                                                                                                  ],
+                                                                                                ),
+                                                                                                SizedBox(height: 16),
+                                                                                                Row(
+                                                                                                  children: [
+                                                                                                    SizedBox(
+                                                                                                      height: 56,
+                                                                                                      width: MediaQuery.of(context).size.width * 0.38,
+                                                                                                      child: ElevatedButton(
+                                                                                                        child: Text(
+                                                                                                          'Book Ride',
+                                                                                                          style: TextStyle(
+                                                                                                            color: Colors.white,
+                                                                                                          ),
+                                                                                                        ),
+                                                                                                        onPressed: () async {
+                                                                                                          // Handle button press
+                                                                                                          await createProRequest();
+                                                                                                          Navigator.pop(context); // Close the bottom sheet
+                                                                                                        },
+                                                                                                        style: ElevatedButton.styleFrom(
+                                                                                                          backgroundColor: Colors.black,
+                                                                                                          shape: RoundedRectangleBorder(
+                                                                                                            borderRadius: BorderRadius.circular(24),
+                                                                                                          ),
+                                                                                                          textStyle: TextStyle(
+                                                                                                            fontSize: 15,
+                                                                                                            fontWeight: FontWeight.bold,
+                                                                                                            color: Colors.white,
+                                                                                                          ),
+                                                                                                        ),
+                                                                                                      ),
+                                                                                                    ),
+                                                                                                    SizedBox(width: MediaQuery.of(context).size.width * 0.022),
+                                                                                                    SizedBox(
+                                                                                                      height: 56,
+                                                                                                      width: MediaQuery.of(context).size.width * 0.36,
+                                                                                                      child: OutlinedButton(
+                                                                                                        child: Text(
+                                                                                                          'View Details',
+                                                                                                          style: TextStyle(
+                                                                                                            color: Colors.white,
+                                                                                                          ),
+                                                                                                        ),
+                                                                                                        onPressed: () {
+                                                                                                          showModalBottomSheet<void>(
+                                                                                                              context: context,
+                                                                                                              builder: (BuildContext context) {
+                                                                                                                return Container(
+                                                                                                                  height: media.width*.7,
+                                                                                                                  width: MediaQuery.of(context).size.width,
+                                                                                                                  decoration: BoxDecoration(
+                                                                                                                    color: Colors.black,
+
+                                                                                                                  ),
+                                                                                                                  child:
+
+                                                                                                                  Padding(
+                                                                                                                    padding: const EdgeInsets.only(left:16,top:32),
+                                                                                                                    child: Column(
+                                                                                                                      mainAxisAlignment: MainAxisAlignment.start,
+                                                                                                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                                                                                                      children: [
+
+                                                                                                                        Row(
+                                                                                                                           mainAxisAlignment: MainAxisAlignment.start,
+                                                                                                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                                                                                                           children: [
+                                                                                                                            CircleAvatar(
+                                                                                                                              radius: 40,
+                                                                                                                               backgroundColor: Colors.white,
+                                                                                                                               child: Image.network(driver['profile_picture']),
+                                                                                                                             ),
+                                                                                                                             SizedBox(width: MediaQuery.of(context).size.width*.02,),
+                                                                                                                             Column(
+                                                                                                                               crossAxisAlignment: CrossAxisAlignment.start,
+                                                                                                                               mainAxisAlignment: MainAxisAlignment.start,
+                                                                                                                               children: [
+                                                                                                                                 Text(driver['name'],
+                                                                                                                                   style: GoogleFonts.notoSans(
+                                                                                                                                     color: Colors.white,
+                                                                                                                                    fontSize: 24,
+                                                                                                                                     fontWeight: FontWeight.w300,
+                                                                                                                                   ),),
+                                                                                                                                 SizedBox(height: MediaQuery.of(context).size.width*.01,),
+                                                                                                                                 Text('Vehicle Model: '+ driver['car_model_name'],
+                                                                                                                                   style: GoogleFonts.notoSans(
+                                                                                                                                     color: Colors.white,
+                                                                                                                                    fontSize: 16,
+                                                                                                                                     fontWeight: FontWeight.w300,
+                                                                                                                                   ),),
+                                                                                                                                 Text('Vehicle No: '+ driver['car_number'],
+                                                                                                                                   style: GoogleFonts.notoSans(
+                                                                                                                                     color: Colors.white,
+                                                                                                                                     fontSize: 16,
+                                                                                                                                     fontWeight: FontWeight.w300,
+                                                                                                                                   ),),
+                                                                                                                                 Text('Vehicle Color: '+ driver['car_color'],
+                                                                                                                                   style: GoogleFonts.notoSans(
+                                                                                                                                     color: Colors.white,
+                                                                                                                                     fontSize: 16,
+                                                                                                                                     fontWeight: FontWeight.w300,
+                                                                                                                                   ),),
+                                                                                                                                 SizedBox(height: MediaQuery.of(context).size.width*.01,),
+                                                                                                                                Icon(Icons.star_rounded,color: Colors.white70,size: 24,),
+
+                                                                                                                               ],
+                                                                                                                            ),
+
+                                                                                                                           ],
+                                                                                                                        ),
+                                                                                                                        Padding(
+                                                                                                                          padding: const EdgeInsets.only(top:16),
+                                                                                                                          child: Row(
+                                                                                                                             children: [
+                                                                                                                              Container(
+                                                                                                                                 height: MediaQuery.of(context).size.width*.13,
+                                                                                                                                 width: MediaQuery.of(context).size.width*.45,
+                                                                                                                                 decoration: BoxDecoration(
+                                                                                                                                  color: Colors.white10,
+                                                                                                                                   borderRadius: BorderRadius.circular(24),
+
+                                                                                                                                ),
+                                                                                                                                 child: Center(
+                                                                                                                                   child: Row(
+                                                                                                                                     crossAxisAlignment: CrossAxisAlignment.center,
+                                                                                                                                  mainAxisAlignment: MainAxisAlignment.center,
+                                                                                                                                     children: [
+                                                                                                                                     Icon(Icons.messenger_rounded,color: Colors.white24,size: 24,),
+                                                                                                                                       SizedBox(width: MediaQuery.of(context).size.width*.02,),
+                                                                                                                                       Text('Message Captain',
+                                                                                                                                         style: GoogleFonts.notoSans(
+                                                                                                                                           color: Colors.white70,
+                                                                                                                                          fontSize: 16,
+                                                                                                                                           fontWeight: FontWeight.w300,
+                                                                                                                                         ),),
+                                                                                                                                    ],
+                                                                                                                                 ),
+                                                                                                                                ),
+                                                                                                                              ),
+
+                                                                                                                              SizedBox(width: MediaQuery.of(context).size.width*.02,),
+
+
+                                                                                                                              Container(
+                                                                                                                                height: MediaQuery.of(context).size.width*.13,
+                                                                                                                                width: MediaQuery.of(context).size.width*.45,
+                                                                                                                               decoration: BoxDecoration(
+                                                                                                                                  color: Colors.white10,
+                                                                                                                                  borderRadius: BorderRadius.circular(24),
+
+                                                                                                                              ),
+                                                                                                                               child: Center(
+                                                                                                                                   child: Row(
+                                                                                                                                     crossAxisAlignment: CrossAxisAlignment.center,
+                                                                                                                                     mainAxisAlignment: MainAxisAlignment.center,
+                                                                                                                                    children: [
+                                                                                                                                     Icon(Icons.call_rounded,color: Colors.white24,size: 24,),
+                                                                                                                                      SizedBox(width: MediaQuery.of(context).size.width*.02,),
+                                                                                                                                      Text('Call Captain',
+                                                                                                                                        style: GoogleFonts.notoSans(
+                                                                                                                                           color: Colors.white70,
+                                                                                                                                           fontSize: 16,
+                                                                                                                                           fontWeight: FontWeight.w300,
+                                                                                                                                         ),),
+                                                                                                                                     ],
+                                                                                                                                   ),
+                                                                                                                                 ),
+                                                                                                                               ),
+                                                                                                                            ],
+                                                                                                                           ),
+                                                                                                                         ),
+
+
+                                                                                                                      ],
+                                                                                                                     ),
+                                                                                                                  ),
+                                                                                                                );
+                                                                                                              }
+                                                                                                          );
+                                                                                                        },
+                                                                                                        style: OutlinedButton.styleFrom(
+                                                                                                          shape: RoundedRectangleBorder(
+                                                                                                            borderRadius: BorderRadius.circular(24),
+                                                                                                          ),
+                                                                                                          textStyle: TextStyle(
+                                                                                                            fontSize: 15,
+                                                                                                            fontWeight: FontWeight.bold,
+                                                                                                          ),
+                                                                                                          side: BorderSide(
+                                                                                                            color: Colors.white,
+                                                                                                          ),
+                                                                                                        ),
+                                                                                                      ),
+                                                                                                    ),
+                                                                                                  ],
+                                                                                                ),
+                                                                                              ],
+                                                                                            ),
+                                                                                          ),
                                                                                         );
                                                                                       },
-
-                                                                                      style: ElevatedButton.styleFrom(
-                                                                                        // backgroundColor: Colors.white.withOpacity(.1),
-                                                                                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24),),
-                                                                                          textStyle: GoogleFonts.notoSans(
-                                                                                            fontSize: 15,
-                                                                                            fontWeight: FontWeight.bold,
-                                                                                            // color: Colors.white,
-                                                                                          )),
                                                                                     ),
-                                                                                  ),
-                                                                                ],
-                                                                              ),
-
-
-                                                                            ],
-                                                                          ),
-                                                                        ),
-                                                                      ),
-
-
-                                                                                  ]
-                                                                              ),
-
-
+                                                                                  ],
+                                                                                );
+                                                                              },
                                                                             ),
-                                                                          ],
+                                                                          ),
 
 
 
-                                                                        ),
+                                                                        ],
                                                                       ),
-                                                                    );
-                                                                  }
+                                                                    ),
+                                                                  );
+                                                                },
                                                               );
-
-                                                              // setState(() {
-                                                              //   pro =1;
-                                                              // });
-                                                              // if (pro==1 &&( widget.type ==
-                                                              //     2) ||
-                                                              //     (((rentalOption.isEmpty && (etaDetails[choosenVehicle]['user_wallet_balance'] >= etaDetails[choosenVehicle]['total'] && etaDetails[choosenVehicle]['has_discount'] == false) || (rentalOption.isEmpty && etaDetails[choosenVehicle]['has_discount'] == true && etaDetails[choosenVehicle]['user_wallet_balance'] >= etaDetails[choosenVehicle]['discounted_totel'])) ||
-                                                              //         (rentalOption.isEmpty &&
-                                                              //             etaDetails[choosenVehicle]['payment_type'].toString().split(',').toList()[payingVia] !=
-                                                              //                 'wallet')) ||
-                                                              //         ((rentalOption.isNotEmpty && (etaDetails[0]['user_wallet_balance'] >= rentalOption[choosenVehicle]['fare_amount']) && rentalOption[choosenVehicle]['has_discount'] == false) ||
-                                                              //             (rentalOption.isNotEmpty &&
-                                                              //                 rentalOption[choosenVehicle]['has_discount'] ==
-                                                              //                     true &&
-                                                              //                 etaDetails[0]['user_wallet_balance'] >=
-                                                              //                     rentalOption[choosenVehicle][
-                                                              //                     'discounted_totel']) ||
-                                                              //             rentalOption.isNotEmpty &&
-                                                              //                 rentalOption[choosenVehicle]['payment_type'].toString().split(',').toList()[payingVia] !=
-                                                              //                     'wallet'))) {
-                                                              //   setState(() {
-                                                              //     _isLoading =
-                                                              //     true;
-                                                              //   });
-                                                              //   dropStopList
-                                                              //       .clear();
-                                                              //   dynamic result;
-                                                              //   if (choosenVehicle !=
-                                                              //       null) {
-                                                              //     if (widget
-                                                              //         .type !=
-                                                              //         1) {
-                                                              //       if (etaDetails[
-                                                              //       choosenVehicle]
-                                                              //       [
-                                                              //       'has_discount'] ==
-                                                              //           false) {
-                                                              //         if (addressList
-                                                              //             .length >
-                                                              //             2) {
-                                                              //           for (var i =
-                                                              //           1;
-                                                              //           i < addressList.length;
-                                                              //           i++) {
-                                                              //             dropStopList.add(DropStops(
-                                                              //                 order:
-                                                              //                 i.toString(),
-                                                              //                 latitude: addressList[i].latlng.latitude,
-                                                              //                 longitude: addressList[i].latlng.longitude,
-                                                              //                 address: addressList[i].address));
-                                                              //           }
-                                                              //         }
-                                                              //         result =
-                                                              //         await createRequest();
-                                                              //         if (result ==
-                                                              //             'logout') {
-                                                              //           navigateLogout();
-                                                              //         }
-                                                              //       } else {
-                                                              //         if (addressList
-                                                              //             .length >
-                                                              //             2) {
-                                                              //           for (var i =
-                                                              //           1;
-                                                              //           i < addressList.length;
-                                                              //           i++) {
-                                                              //             dropStopList.add(DropStops(
-                                                              //                 order:
-                                                              //                 i.toString(),
-                                                              //                 latitude: addressList[i].latlng.latitude,
-                                                              //                 longitude: addressList[i].latlng.longitude,
-                                                              //                 address: addressList[i].address));
-                                                              //           }
-                                                              //         }
-                                                              //         result =
-                                                              //         await createRequestWithPromo();
-                                                              //         if (result ==
-                                                              //             'logout') {
-                                                              //           navigateLogout();
-                                                              //         }
-                                                              //       }
-                                                              //     } else {
-                                                              //       if (rentalOption[
-                                                              //       choosenVehicle]
-                                                              //       [
-                                                              //       'has_discount'] ==
-                                                              //           false) {
-                                                              //         result =
-                                                              //         await createRentalRequest();
-                                                              //         if (result ==
-                                                              //             'logout') {
-                                                              //           navigateLogout();
-                                                              //         }
-                                                              //       } else {
-                                                              //         result =
-                                                              //         await createRentalRequestWithPromo();
-                                                              //         if (result ==
-                                                              //             'logout') {
-                                                              //           navigateLogout();
-                                                              //         }
-                                                              //       }
-                                                              //     }
-                                                              //   }
-                                                              //   if (result ==
-                                                              //       'success') {
-                                                              //     timer();
-                                                              //   }
-                                                              //   setState(() {
-                                                              //     _isLoading =
-                                                              //     false;
-                                                              //   });
-                                                              // } else {
-                                                              //   setState(() {
-                                                              //     islowwalletbalance =
-                                                              //     true;
-                                                              //   });
-                                                              // }
                                                             },
                                                             child: Container(
                                                               padding: EdgeInsets.all(media.width * 0.02),
@@ -2906,51 +2334,40 @@ Container(
                                                               decoration: BoxDecoration(
                                                                 borderRadius: BorderRadius.circular(12),
                                                                 boxShadow: [
-                                                                  BoxShadow(color: (isDarkTheme == true) ? Colors.white.withOpacity(0.1) : Colors.black.withOpacity(0.21), spreadRadius: 1.5, blurRadius: 1.5)
+                                                                  BoxShadow(
+                                                                    color: (isDarkTheme == true) ? Colors.white.withOpacity(0.1) : Colors.black.withOpacity(0.21),
+                                                                    spreadRadius: 1.5,
+                                                                    blurRadius: 1.5,
+                                                                  )
                                                                 ],
                                                                 color: Colors.black38,
                                                               ),
                                                               child: Row(
                                                                 children: [
-
                                                                   SizedBox(
                                                                     width: media.width * 0.02,
                                                                   ),
-
                                                                   SizedBox(
-                                                                    height:24,
+                                                                    height: 24,
                                                                     width: 24,
                                                                     child: Image.asset('assets/images/crown.png'),
                                                                   ),
-
                                                                   SizedBox(
                                                                     width: media.width * 0.05,
                                                                   ),
-
-                                                                  Text('Pro Booking',
-                                                                      style:GoogleFonts.notoSans(
-                                                                          fontSize: media.width * fourteen,
-                                                                          fontWeight: FontWeight.w600,
-                                                                          color: Colors.white
-                                                                      )),
-
-                                                                  //  SizedBox(
-                                                                  //      width: media
-                                                                  //          .width *
-                                                                  //              .35,),
-                                                                  //
-                                                                  // Text('₹ 180',
-                                                                  //     style:GoogleFonts.notoSans(
-                                                                  //         fontSize: media.width * fourteen,
-                                                                  //         fontWeight: FontWeight.w600,
-                                                                  //         color: Colors.white
-                                                                  //     )),
-
-
+                                                                  Text(
+                                                                    'Pro Booking',
+                                                                    style: GoogleFonts.notoSans(
+                                                                      fontSize: media.width * fourteen,
+                                                                      fontWeight: FontWeight.w600,
+                                                                      color: Colors.white,
+                                                                    ),
+                                                                  ),
                                                                 ],
                                                               ),
                                                             ),
                                                           ),
+
                                                         ],
                                                       ))),
                                             )
@@ -3478,395 +2895,7 @@ Container(
                                               ),
                                             )
                                                 : Container(),
-                                            // (choosenVehicle != null &&
-                                            //         widget.type != 2)
-                                            // ? InkWell(
-                                            //     onTap: () {
-                                            //       setState(() {
-                                            //         _addCoupon = true;
-                                            //       });
-                                            //     },
-                                            //     child:
-                                            //         (_addCoupon ==
-                                            //                 false)
-                                            //             ? Container(
-                                            //                 height: media
-                                            //                         .width *
-                                            //                     0.106,
-                                            //                 width: media
-                                            //                         .width *
-                                            //                     0.9,
-                                            //                 decoration:
-                                            //                     const BoxDecoration(
-                                            //                         border:
-                                            //                             Border(bottom: BorderSide(color: Color(0xffF3F3F3), width: 1.1))),
-                                            //                 child: Row(
-                                            //                   mainAxisAlignment:
-                                            //                       MainAxisAlignment
-                                            //                           .spaceBetween,
-                                            //                   children: [
-                                            //                     MyText(
-                                            //                       text: languages[choosenLanguage]
-                                            //                           [
-                                            //                           'text_coupons'],
-                                            //                       size: media.width *
-                                            //                           fourteen,
-                                            //                       fontweight:
-                                            //                           FontWeight.w600,
-                                            //                     ),
-                                            //                     Icon(
-                                            //                       Icons
-                                            //                           .arrow_forward_ios,
-                                            //                       color:
-                                            //                           textColor,
-                                            //                       size: media.width *
-                                            //                           0.04,
-                                            //                     )
-                                            //                   ],
-                                            //                 ),
-                                            //               )
-                                            //             : Container(
-                                            //                 padding: EdgeInsets.only(
-                                            //                     top: media.width *
-                                            //                         0.02),
-                                            //                 height: media
-                                            //                         .width *
-                                            //                     0.106,
-                                            //                 width: media
-                                            //                         .width *
-                                            //                     0.9,
-                                            //                 color: (isDarkTheme ==
-                                            //                         true)
-                                            //                     ? Colors
-                                            //                         .black
-                                            //                     : const Color(
-                                            //                         0xffF3F3F3),
-                                            //                 child: Row(
-                                            //                   mainAxisAlignment:
-                                            //                       MainAxisAlignment
-                                            //                           .spaceEvenly,
-                                            //                   children: [
-                                            //                     SizedBox(
-                                            //                       width:
-                                            //                           media.width * 0.25,
-                                            //                       child:
-                                            //                           Row(
-                                            //                         children: [
-                                            //                           MyText(text: languages[choosenLanguage]['text_coupons'], size: media.width * fourteen, color: textColor),
-                                            //                           Icon(
-                                            //                             Icons.card_giftcard_outlined,
-                                            //                             size: media.width * fourteen,
-                                            //                             color: (isDarkTheme == true) ? const Color(0xFFFF0000) : buttonColor,
-                                            //                           )
-                                            //                         ],
-                                            //                       ),
-                                            //                     ),
-                                            //                     (promoStatus !=
-                                            //                             1)
-                                            //                         ? Container(
-                                            //                             width: media.width * 0.25,
-                                            //                             height: media.width * 0.090,
-                                            //                             padding: EdgeInsets.all(media.width * 0.010),
-                                            //                             decoration: BoxDecoration(color: page, border: Border.all(color: textColor.withOpacity(0.4)), borderRadius: BorderRadius.circular(media.width * 0.02)),
-                                            //                             child: TextField(
-                                            //                               controller: promoKey,
-                                            //                               decoration: const InputDecoration(border: InputBorder.none),
-                                            //                               style: GoogleFonts.notoSans(color: textColor),
-                                            //                               onChanged: (val) {
-                                            //                                 promoCode = val;
-                                            //                               },
-                                            //                             ),
-                                            //                           )
-                                            //                         : const Icon(
-                                            //                             Icons.done,
-                                            //                             color: Colors.green,
-                                            //                           ),
-                                            //                     SizedBox(
-                                            //                       width:
-                                            //                           media.width * 0.25,
-                                            //                       height:
-                                            //                           media.width * 0.090,
-                                            //                       child:
-                                            //                           Button(
-                                            //                         text: (promoStatus != 1)
-                                            //                             ? languages[choosenLanguage]['text_apply']
-                                            //                             : languages[choosenLanguage]['text_remove'],
-                                            //                         fontweight:
-                                            //                             FontWeight.w500,
-                                            //                         onTap:
-                                            //                             () async {
-                                            //                           FocusScope.of(context).unfocus();
-                                            //                           setState(() {
-                                            //                             _isLoading = true;
-                                            //                           });
-                                            //                           if (promoStatus != 1) {
-                                            //                             setState(() {
-                                            //                               promoStatus = null;
-                                            //                             });
-                                            //                             if (widget.type != 1 && promoKey.text.isNotEmpty) {
-                                            //                               await etaRequestWithPromo();
-                                            //                             } else if (widget.type == 1 && promoKey.text.isNotEmpty) {
-                                            //                               await rentalRequestWithPromo();
-                                            //                             }
-                                            //                           } else {
-                                            //                             promoKey.text = '';
-                                            //                             promoStatus = null;
-                                            //                             if (widget.type != 1) {
-                                            //                               await etaRequest();
-                                            //                             } else if (widget.type == 1) {
-                                            //                               await rentalEta();
-                                            //                             }
-                                            //                           }
-                                            //                           setState(() {
-                                            //                             _isLoading = false;
-                                            //                           });
-                                            //                         },
-                                            //                         color:
-                                            //                             const Color(0xffFF0000),
-                                            //                         textcolor:
-                                            //                             Colors.black,
-                                            //                         borderRadius:
-                                            //                             12.0,
-                                            //                       ),
-                                            //                     ),
-                                            //                     InkWell(
-                                            //                         onTap:
-                                            //                             () {
-                                            //                           if (widget.type == 1 ? (rentalOption[choosenVehicle]['has_discount'] == true) : etaDetails[choosenVehicle]['has_discount'] == true) {
-                                            //                             setState(() {
-                                            //                               promoStatus = 1;
-                                            //                               _addCoupon = false;
-                                            //                               // promoKey.clear();
-                                            //                             });
-                                            //                           } else {
-                                            //                             setState(() {
-                                            //                               promoStatus = null;
-                                            //                               _addCoupon = false;
-                                            //                               promoKey.clear();
-                                            //                             });
-                                            //                           }
-                                            //                         },
-                                            //                         child:
-                                            //                             const Icon(
-                                            //                           Icons.cancel,
-                                            //                           color: Color(0xffFF0000),
-                                            //                         ))
-                                            //                   ],
-                                            //                 ),
-                                            //               ),
-                                            //   )
-                                            //    // : Container(),
-                                            // if (promoStatus != null &&
-                                            //     promoStatus == 2)
-                                            //   Container(
-                                            //     width: media.width * 0.9,
-                                            //     padding: EdgeInsets.only(
-                                            //         top: media.width *
-                                            //             0.025),
-                                            //     child: MyText(
-                                            //       text: languages[
-                                            //               choosenLanguage][
-                                            //           'text_promorejected'],
-                                            //       size:
-                                            //           media.width * twelve,
-                                            //       color: Colors.red,
-                                            //     ),
-                                            //   ),
-                                            // (choosenVehicle != null)
-                                            //     ? SizedBox(
-                                            //         height:
-                                            //             media.width * 0.025,
-                                            //       )
-                                            //     : Container(),
-                                            // SizedBox(
-                                            //   width: media.width * 0.9,
-                                            // child: Row(
-                                            //   mainAxisAlignment:
-                                            //       MainAxisAlignment
-                                            //           .spaceBetween,
-                                            //   children: [
-                                            //     (userDetails[
-                                            //                 'show_ride_later_feature'] ==
-                                            //             true)
-                                            //         ? Button(
-                                            //             color: page,
-                                            //             borcolor:
-                                            //                 buttonColor,
-                                            //             textcolor:
-                                            //                 buttonColor,
-                                            //             width:
-                                            //                 media.width *
-                                            //                     0.42,
-                                            //             onTap: () async {
-                                            //               if (((rentalOption.isEmpty && (etaDetails[choosenVehicle]['user_wallet_balance'] >= etaDetails[choosenVehicle]['total'] && etaDetails[choosenVehicle]['has_discount'] == false) || (rentalOption.isEmpty && etaDetails[choosenVehicle]['has_discount'] == true && etaDetails[choosenVehicle]['user_wallet_balance'] >= etaDetails[choosenVehicle]['discounted_totel'])) ||
-                                            //                       (rentalOption.isEmpty &&
-                                            //                           etaDetails[choosenVehicle]['payment_type'].toString().split(',').toList()[payingVia] !=
-                                            //                               'wallet')) ||
-                                            //                   ((rentalOption.isNotEmpty && (etaDetails[0]['user_wallet_balance'] >= rentalOption[choosenVehicle]['fare_amount']) && rentalOption[choosenVehicle]['has_discount'] == false) ||
-                                            //                       (rentalOption.isNotEmpty &&
-                                            //                           rentalOption[choosenVehicle]['has_discount'] ==
-                                            //                               true &&
-                                            //                           etaDetails[0]['user_wallet_balance'] >=
-                                            //                               rentalOption[choosenVehicle][
-                                            //                                   'discounted_totel']) ||
-                                            //                       rentalOption.isNotEmpty &&
-                                            //                           rentalOption[choosenVehicle]['payment_type'].toString().split(',').toList()[payingVia] !=
-                                            //                               'wallet')) {
-                                            //                 if (choosenVehicle !=
-                                            //                     null) {
-                                            //                   setState(
-                                            //                       () {
-                                            //                     choosenDateTime = DateTime
-                                            //                             .now()
-                                            //                         .add(Duration(
-                                            //                             minutes: int.parse(userDetails['user_can_make_a_ride_after_x_miniutes'])));
-                                            //                     _dateTimePicker =
-                                            //                         true;
-                                            //                   });
-                                            //                 }
-                                            //               } else {
-                                            //                 setState(() {
-                                            //                   islowwalletbalance =
-                                            //                       true;
-                                            //                 });
-                                            //               }
-                                            //             },
-                                            //             text: languages[
-                                            //                     choosenLanguage]
-                                            //                 [
-                                            //                 'text_ridelater'])
-                                            //         : Container(),
-                                            //     Button(
-                                            //         width: ((userDetails[
-                                            //                     'show_ride_later_feature'] ==
-                                            //                 true))
-                                            //             ? media.width *
-                                            //                 0.42
-                                            //             : media.width *
-                                            //                 0.89,
-                                            //         color: buttonColor,
-                                            //         onTap: () async {
-                                            //           if ((widget.type ==
-                                            //                   2) ||
-                                            //               (((rentalOption.isEmpty && (etaDetails[choosenVehicle]['user_wallet_balance'] >= etaDetails[choosenVehicle]['total'] && etaDetails[choosenVehicle]['has_discount'] == false) || (rentalOption.isEmpty && etaDetails[choosenVehicle]['has_discount'] == true && etaDetails[choosenVehicle]['user_wallet_balance'] >= etaDetails[choosenVehicle]['discounted_totel'])) ||
-                                            //                       (rentalOption.isEmpty &&
-                                            //                           etaDetails[choosenVehicle]['payment_type'].toString().split(',').toList()[payingVia] !=
-                                            //                               'wallet')) ||
-                                            //                   ((rentalOption.isNotEmpty && (etaDetails[0]['user_wallet_balance'] >= rentalOption[choosenVehicle]['fare_amount']) && rentalOption[choosenVehicle]['has_discount'] == false) ||
-                                            //                       (rentalOption.isNotEmpty &&
-                                            //                           rentalOption[choosenVehicle]['has_discount'] ==
-                                            //                               true &&
-                                            //                           etaDetails[0]['user_wallet_balance'] >=
-                                            //                               rentalOption[choosenVehicle][
-                                            //                                   'discounted_totel']) ||
-                                            //                       rentalOption.isNotEmpty &&
-                                            //                           rentalOption[choosenVehicle]['payment_type'].toString().split(',').toList()[payingVia] !=
-                                            //                               'wallet'))) {
-                                            //             setState(() {
-                                            //               _isLoading =
-                                            //                   true;
-                                            //             });
-                                            //             dropStopList
-                                            //                 .clear();
-                                            //             dynamic result;
-                                            //             if (choosenVehicle !=
-                                            //                 null) {
-                                            //               if (widget
-                                            //                       .type !=
-                                            //                   1) {
-                                            //                 if (etaDetails[
-                                            //                             choosenVehicle]
-                                            //                         [
-                                            //                         'has_discount'] ==
-                                            //                     false) {
-                                            //                   if (addressList
-                                            //                           .length >
-                                            //                       2) {
-                                            //                     for (var i =
-                                            //                             1;
-                                            //                         i < addressList.length;
-                                            //                         i++) {
-                                            //                       dropStopList.add(DropStops(
-                                            //                           order:
-                                            //                               i.toString(),
-                                            //                           latitude: addressList[i].latlng.latitude,
-                                            //                           longitude: addressList[i].latlng.longitude,
-                                            //                           address: addressList[i].address));
-                                            //                     }
-                                            //                   }
-                                            //                   result =
-                                            //                       await createRequest();
-                                            //                   if (result ==
-                                            //                       'logout') {
-                                            //                     navigateLogout();
-                                            //                   }
-                                            //                 } else {
-                                            //                   if (addressList
-                                            //                           .length >
-                                            //                       2) {
-                                            //                     for (var i =
-                                            //                             1;
-                                            //                         i < addressList.length;
-                                            //                         i++) {
-                                            //                       dropStopList.add(DropStops(
-                                            //                           order:
-                                            //                               i.toString(),
-                                            //                           latitude: addressList[i].latlng.latitude,
-                                            //                           longitude: addressList[i].latlng.longitude,
-                                            //                           address: addressList[i].address));
-                                            //                     }
-                                            //                   }
-                                            //                   result =
-                                            //                       await createRequestWithPromo();
-                                            //                   if (result ==
-                                            //                       'logout') {
-                                            //                     navigateLogout();
-                                            //                   }
-                                            //                 }
-                                            //               } else {
-                                            //                 if (rentalOption[
-                                            //                             choosenVehicle]
-                                            //                         [
-                                            //                         'has_discount'] ==
-                                            //                     false) {
-                                            //                   result =
-                                            //                       await createRentalRequest();
-                                            //                   if (result ==
-                                            //                       'logout') {
-                                            //                     navigateLogout();
-                                            //                   }
-                                            //                 } else {
-                                            //                   result =
-                                            //                       await createRentalRequestWithPromo();
-                                            //                   if (result ==
-                                            //                       'logout') {
-                                            //                     navigateLogout();
-                                            //                   }
-                                            //                 }
-                                            //               }
-                                            //             }
-                                            //             if (result ==
-                                            //                 'success') {
-                                            //               timer();
-                                            //             }
-                                            //             setState(() {
-                                            //               _isLoading =
-                                            //                   false;
-                                            //             });
-                                            //           } else {
-                                            //             setState(() {
-                                            //               islowwalletbalance =
-                                            //                   true;
-                                            //             });
-                                            //           }
-                                            //         },
-                                            //         text: languages[
-                                            //                 choosenLanguage]
-                                            //             [
-                                            //             'text_book_now']),
-                                            //   ],
-                                            // ),
-                                            //),
+
                                           ],
                                         ),
                                       ))
@@ -4818,6 +3847,7 @@ Container(
                                                   if (widget.type != 1) {
                                                     var val =
                                                     await etaRequest();
+                                                    await driverRequest();
                                                     if (val == 'logout') {
                                                       navigateLogout();
                                                     }
@@ -5305,6 +4335,7 @@ Container(
                                                                           dynamic result;
                                                                           if (widget.type != 1) {
                                                                             result = await etaRequest();
+                                                                            await driverRequest();
                                                                           } else {
                                                                             result = await rentalEta();
                                                                           }
@@ -5341,6 +4372,7 @@ Container(
                                                                           // promoKey.text = promoCode;
                                                                           if (widget.type != 1) {
                                                                             val = await etaRequest();
+                                                                            await driverRequest();
                                                                           } else {
                                                                             val = await rentalEta();
                                                                           }
@@ -5410,6 +4442,7 @@ Container(
                                                                     1) {
                                                                   val =
                                                                   await etaRequestWithPromo();
+                                                                  await driverRequest();
                                                                 } else {
                                                                   val =
                                                                   await rentalRequestWithPromo();
@@ -5678,27 +4711,7 @@ Container(
                                                   color: buttonColor),
                                             ),
                                           ),
-                                          // SizedBox(
-                                          //   height: media.height * 0.01,
-                                          // ),
-                                          // Row(
-                                          //   mainAxisAlignment:
-                                          //       MainAxisAlignment.end,
-                                          //   children: [
-                                          //     (timing != null)
-                                          //         ? Text(
-                                          //             '${Duration(seconds: timing).toString().substring(3, 7)} mins',
-                                          //             style: GoogleFonts.notoSans(
-                                          //                 fontSize: media
-                                          //                         .width *
-                                          //                     ten,
-                                          //                 color: textColor
-                                          //                     .withOpacity(
-                                          //                         0.4)),
-                                          //           )
-                                          //         : Container()
-                                          //   ],
-                                          // ),
+
 
                                           SizedBox(
                                             height: media.height * 0.01,
@@ -5730,357 +4743,7 @@ Container(
                                   )
                                       : Container(),
 
-                                  // pro rider detail
-                                  // (pro==1 && userRequestData.isNotEmpty &&
-                                  //     userRequestData['is_later'] ==
-                                  //         null &&
-                                  //     userRequestData['accepted_at'] ==
-                                  //         null ||
-                                  //     userRequestData.isNotEmpty &&
-                                  //         userRequestData['is_later'] ==
-                                  //             0 &&
-                                  //         userRequestData['accepted_at'] ==
-                                  //             null)
-                                  //     ? Positioned(
-                                  //   bottom: 0,
-                                  //   child: Container(
-                                  //     height: MediaQuery.of(context).size.height*.5,
-                                  //     width: media.width * 1,
-                                  //     decoration: BoxDecoration(
-                                  //       borderRadius:
-                                  //       const BorderRadius.only(
-                                  //           topLeft:
-                                  //           Radius.circular(48),
-                                  //           topRight:
-                                  //           Radius.circular(48)),
-                                  //       color: page,
-                                  //     ),
-                                  //     padding: EdgeInsets.all(
-                                  //         media.width * 0.05),
-                                  //     child:
-                                  //
-                                  //     Column(
-                                  //       children: [
-                                  //
-                                  //         SizedBox(
-                                  //           height: 8,
-                                  //         ),
-                                  //
-                                  //         Text('Select Your Captain',style: GoogleFonts.notoSans(
-                                  //           color: Colors.white,
-                                  //           fontSize: 24,
-                                  //           fontWeight: FontWeight.bold,
-                                  //
-                                  //         ),),
-                                  //
-                                  //         Padding(
-                                  //             padding:const EdgeInsets.only(top:8),
-                                  //             child: Row(
-                                  //                 mainAxisAlignment: MainAxisAlignment.center,
-                                  //
-                                  //                 children: [
-                                  //                   //search bar
-                                  //                   SizedBox(
-                                  //                     width:MediaQuery.of(context).size.width*0.6,
-                                  //                     height: 56,
-                                  //                     child: TextField(
-                                  //                       cursorColor: Colors.white,
-                                  //                       decoration: InputDecoration(
-                                  //                         prefixIcon: Icon(Icons.search),
-                                  //                         fillColor: Colors.black.withOpacity(.8),
-                                  //                         focusColor: Colors.white,
-                                  //                         focusedBorder: OutlineInputBorder(
-                                  //                           borderSide: BorderSide(color: Colors.white), // Set the color for focused border
-                                  //                           borderRadius: BorderRadius.circular(24),
-                                  //                         ),
-                                  //                         border: OutlineInputBorder(
-                                  //                           borderRadius: BorderRadius.circular(24),
-                                  //                         ),
-                                  //                         // labelText: 'Filled',
-                                  //                         hintText: 'Search By Name, Car Number, driver id..',
-                                  //                         hintStyle: GoogleFonts.notoSans(
-                                  //                             color: Colors.white24
-                                  //                         ),
-                                  //                         filled: true,
-                                  //                       ),
-                                  //                     ),),
-                                  //                   SizedBox(width:MediaQuery.of(context).size.width*0.01),
-                                  //
-                                  //                   Container(
-                                  //                     height: 40,
-                                  //                     width: 40,
-                                  //                     decoration: BoxDecoration(
-                                  //                         shape: BoxShape.circle,
-                                  //                         color:Colors.white.withOpacity(.1)
-                                  //                     ),
-                                  //                     child:Icon(Icons.downloading_sharp,
-                                  //                       color: Colors.white60,),
-                                  //                   ),
-                                  //                   SizedBox(width:MediaQuery.of(context).size.width*0.01),
-                                  //
-                                  //                   //Referral Icon
-                                  //                   Container(
-                                  //                     height: 40,
-                                  //                     width: 40,
-                                  //                     decoration: BoxDecoration(
-                                  //                       shape: BoxShape.circle,
-                                  //                       color:Colors.white.withOpacity(.1),
-                                  //                     ),
-                                  //                     child:Icon(Icons.receipt_long_rounded,
-                                  //                         color: Colors.white60),
-                                  //                   ),
-                                  //
-                                  //
-                                  //                 ])),
-                                  //
-                                  //         Padding(
-                                  //           padding: const EdgeInsets.only(left: 8.0,right: 8,top:16),
-                                  //
-                                  //           //Captain Detail card
-                                  //           child:
-                                  //           Column(
-                                  //               children: [
-                                  //                 Container(
-                                  //                   decoration: BoxDecoration(
-                                  //                     color: Colors.white12,
-                                  //                     borderRadius: BorderRadius.circular(16),
-                                  //                   ),
-                                  //                   child: Padding(
-                                  //                     padding: const EdgeInsets.all(16.0),
-                                  //                     child: Column(
-                                  //                       crossAxisAlignment: CrossAxisAlignment.start,
-                                  //                       children: [
-                                  //                         Row(
-                                  //                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  //                           children: [
-                                  //                             Text('Ramesh',style: GoogleFonts.notoSans(color: Colors.white60,fontSize: 24,fontWeight: FontWeight.bold),),
-                                  //                             Text('₹ 50',style: GoogleFonts.notoSans(color: Colors.white60),),
-                                  //                           ],
-                                  //                         ),
-                                  //                         Row(
-                                  //                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  //                           children: [
-                                  //                             Text('Car Model',style: GoogleFonts.notoSans(color: Colors.white60,fontSize: 16),),
-                                  //                             // Text('12Min',style: GoogleFonts.notoSans(color: Colors.white60),),
-                                  //                           ],
-                                  //                         ),
-                                  //
-                                  //                         SizedBox(
-                                  //                           height: 8,
-                                  //                         ),
-                                  //
-                                  //                         Row(
-                                  //                           children: [
-                                  //                             Icon(Icons.star_rounded,color: Colors.white60),
-                                  //                             Icon(Icons.star_rounded,color: Colors.white60),
-                                  //                             Icon(Icons.star_rounded,color: Colors.white60),
-                                  //                             Icon(Icons.star_rounded,color: Colors.white60),
-                                  //                             Icon(Icons.star_half_rounded,color: Colors.white60),
-                                  //                           ],
-                                  //                         ),
-                                  //
-                                  //                         SizedBox(
-                                  //                           height: 16,
-                                  //                         ),
-                                  //
-                                  //                         Row(
-                                  //                           // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  //                           children: [
-                                  //
-                                  //                             //Primary Button
-                                  //                             SizedBox(
-                                  //                               height:56,
-                                  //                               width: MediaQuery.of(context).size.width*0.38,
-                                  //                               child: ElevatedButton(
-                                  //                                 child: Text('Book Ride',style: GoogleFonts.notoSans(
-                                  //                                   color: Colors.white,
-                                  //
-                                  //                                 ),),
-                                  //                                 // Within the `FirstRoute` widget
-                                  //                                 onPressed: () {
-                                  //                                   Navigator.push(
-                                  //                                     context,
-                                  //                                     MaterialPageRoute(builder: (context) =>  Loading()),
-                                  //                                   );
-                                  //                                 },
-                                  //
-                                  //                                 style: ElevatedButton.styleFrom(
-                                  //                                     backgroundColor: Colors.black,
-                                  //                                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24),),
-                                  //                                     textStyle: GoogleFonts.notoSans(
-                                  //                                       fontSize: 15,
-                                  //                                       fontWeight: FontWeight.bold,
-                                  //                                       color: Colors.white,
-                                  //                                     )),
-                                  //                               ),
-                                  //                             ),
-                                  //
-                                  //                             SizedBox(width:MediaQuery.of(context).size.width*0.022),
-                                  //
-                                  //                             //Secondary Button
-                                  //                             SizedBox(
-                                  //                               height:56,
-                                  //                               width: MediaQuery.of(context).size.width*0.38,
-                                  //                               child: OutlinedButton(
-                                  //                                 child: Text('View Details',style: GoogleFonts.notoSans(
-                                  //                                     color: Colors.white
-                                  //                                 ),),
-                                  //                                 onPressed: () {
-                                  //                                   showModalBottomSheet<void>(
-                                  //                                       context: context,
-                                  //                                       builder: (BuildContext context) {
-                                  //                                         return Container(
-                                  //                                           height: media.width*.7,
-                                  //                                           width: MediaQuery.of(context).size.width,
-                                  //                                           decoration: BoxDecoration(
-                                  //                                             color: Colors.black,
-                                  //
-                                  //                                           ),
-                                  //                                           child: Padding(
-                                  //                                             padding: const EdgeInsets.only(left:16,top:32),
-                                  //                                             child: Column(
-                                  //                                               mainAxisAlignment: MainAxisAlignment.start,
-                                  //                                               crossAxisAlignment: CrossAxisAlignment.start,
-                                  //                                               children: [
-                                  //
-                                  //                                                 Row(
-                                  //                                                   mainAxisAlignment: MainAxisAlignment.start,
-                                  //                                                   crossAxisAlignment: CrossAxisAlignment.start,
-                                  //                                                   children: [
-                                  //                                                     CircleAvatar(
-                                  //                                                       radius: 40,
-                                  //                                                       backgroundColor: Colors.white,
-                                  //                                                       child: Image.asset('assets/images/profile.png'),
-                                  //                                                     ),
-                                  //                                                     SizedBox(width: MediaQuery.of(context).size.width*.02,),
-                                  //                                                     Column(
-                                  //                                                       crossAxisAlignment: CrossAxisAlignment.start,
-                                  //                                                       mainAxisAlignment: MainAxisAlignment.start,
-                                  //                                                       children: [
-                                  //                                                         Text('Driver Name',
-                                  //                                                           style: GoogleFonts.notoSans(
-                                  //                                                             color: Colors.white,
-                                  //                                                             fontSize: 24,
-                                  //                                                             fontWeight: FontWeight.w300,
-                                  //                                                           ),),
-                                  //                                                         SizedBox(height: MediaQuery.of(context).size.width*.01,),
-                                  //                                                         Text('Car Model',
-                                  //                                                           style: GoogleFonts.notoSans(
-                                  //                                                             color: Colors.white24,
-                                  //                                                             fontSize: 16,
-                                  //                                                             fontWeight: FontWeight.w300,
-                                  //                                                           ),),
-                                  //                                                         SizedBox(height: MediaQuery.of(context).size.width*.01,),
-                                  //                                                         Icon(Icons.star_rounded,color: Colors.white24,size: 24,),
-                                  //
-                                  //                                                       ],
-                                  //                                                     ),
-                                  //
-                                  //                                                   ],
-                                  //                                                 ),
-                                  //                                                 Padding(
-                                  //                                                   padding: const EdgeInsets.only(top:16),
-                                  //                                                   child: Row(
-                                  //                                                     children: [
-                                  //                                                       Container(
-                                  //                                                         height: MediaQuery.of(context).size.width*.13,
-                                  //                                                         width: MediaQuery.of(context).size.width*.45,
-                                  //                                                         decoration: BoxDecoration(
-                                  //                                                           color: Colors.white10,
-                                  //                                                           borderRadius: BorderRadius.circular(24),
-                                  //
-                                  //                                                         ),
-                                  //                                                         child: Center(
-                                  //                                                           child: Row(
-                                  //                                                             crossAxisAlignment: CrossAxisAlignment.center,
-                                  //                                                             mainAxisAlignment: MainAxisAlignment.center,
-                                  //                                                             children: [
-                                  //                                                               Icon(Icons.messenger_rounded,color: Colors.white24,size: 24,),
-                                  //                                                               SizedBox(width: MediaQuery.of(context).size.width*.02,),
-                                  //                                                               Text('Message Captain',
-                                  //                                                                 style: GoogleFonts.notoSans(
-                                  //                                                                   color: Colors.white70,
-                                  //                                                                   fontSize: 16,
-                                  //                                                                   fontWeight: FontWeight.w300,
-                                  //                                                                 ),),
-                                  //                                                             ],
-                                  //                                                           ),
-                                  //                                                         ),
-                                  //                                                       ),
-                                  //
-                                  //                                                       SizedBox(width: MediaQuery.of(context).size.width*.02,),
-                                  //
-                                  //
-                                  //                                                       Container(
-                                  //                                                         height: MediaQuery.of(context).size.width*.13,
-                                  //                                                         width: MediaQuery.of(context).size.width*.45,
-                                  //                                                         decoration: BoxDecoration(
-                                  //                                                           color: Colors.white10,
-                                  //                                                           borderRadius: BorderRadius.circular(24),
-                                  //
-                                  //                                                         ),
-                                  //                                                         child: Center(
-                                  //                                                           child: Row(
-                                  //                                                             crossAxisAlignment: CrossAxisAlignment.center,
-                                  //                                                             mainAxisAlignment: MainAxisAlignment.center,
-                                  //                                                             children: [
-                                  //                                                               Icon(Icons.call_rounded,color: Colors.white24,size: 24,),
-                                  //                                                               SizedBox(width: MediaQuery.of(context).size.width*.02,),
-                                  //                                                               Text('Call Captain',
-                                  //                                                                 style: GoogleFonts.notoSans(
-                                  //                                                                   color: Colors.white70,
-                                  //                                                                   fontSize: 16,
-                                  //                                                                   fontWeight: FontWeight.w300,
-                                  //                                                                 ),),
-                                  //                                                             ],
-                                  //                                                           ),
-                                  //                                                         ),
-                                  //                                                       ),
-                                  //                                                     ],
-                                  //                                                   ),
-                                  //                                                 ),
-                                  //
-                                  //
-                                  //                                               ],
-                                  //                                             ),
-                                  //                                           ),
-                                  //                                         );
-                                  //                                       }
-                                  //                                   );
-                                  //                                 },
-                                  //
-                                  //                                 style: ElevatedButton.styleFrom(
-                                  //                                   // backgroundColor: Colors.white.withOpacity(.1),
-                                  //                                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24),),
-                                  //                                     textStyle: GoogleFonts.notoSans(
-                                  //                                       fontSize: 15,
-                                  //                                       fontWeight: FontWeight.bold,
-                                  //                                       // color: Colors.white,
-                                  //                                     )),
-                                  //                               ),
-                                  //                             ),
-                                  //                           ],
-                                  //                         ),
-                                  //
-                                  //
-                                  //                       ],
-                                  //                     ),
-                                  //                   ),
-                                  //                 ),
-                                  //
-                                  //
-                                  //               ]
-                                  //           ),
-                                  //
-                                  //
-                                  //         ),
-                                  //       ],
-                                  //
-                                  //
-                                  //     ),
-                                  //   ),
-                                  // )
-                                  //     : Container(),
+
                                   (userRequestData.isNotEmpty &&
                                       userRequestData['accepted_at'] !=
                                           null)
@@ -8318,6 +6981,7 @@ Container(
                                                   if (widget.type != 1) {
                                                     var val =
                                                     await etaRequest();
+                                                    await driverRequest();
                                                     if (val == 'logout') {
                                                       navigateLogout();
                                                     }

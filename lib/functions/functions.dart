@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_user/pages/login/otp_page.dart';
 import 'package:flutter_user/translations/translation.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
@@ -1147,6 +1148,7 @@ class DropStops {
 }
 
 List etaDetails = [];
+List driverDetails = [];
 
 //eta request
 
@@ -1244,6 +1246,124 @@ etaRequest({transport}) async {
               .where((element) => element['is_default'] == true)
               .isNotEmpty)
           ? etaDetails.indexWhere((element) => element['is_default'] == true)
+          : 0;
+      result = true;
+      valueNotifierBook.incrementNotifier();
+      valueNotifierHome.incrementNotifier();
+    } else if (response.statusCode == 401) {
+      result = 'logout';
+    } else {
+      debugPrint(response.body);
+      if (jsonDecode(response.body)['message'] ==
+          "service not available with this location") {
+        serviceNotAvailable = true;
+      }
+      result = false;
+    }
+    return result;
+  } catch (e) {
+    if (e is SocketException) {
+      internet = false;
+    }
+  }
+}
+driverRequest({transport}) async {
+
+  driverDetails.clear();
+  dynamic result;
+  try {
+
+    var response = await http.post(Uri.parse('${url}api/v1/request/pro'),
+        headers: {
+          'Authorization': 'Bearer ${bearerToken[0].token}',
+          'Content-Type': 'application/json',
+        },
+        body: (addressList
+            .where((element) => element.type == 'drop')
+            .isNotEmpty &&
+            dropStopList.isEmpty)
+            ? jsonEncode({
+          'pick_lat': (userRequestData.isNotEmpty)
+              ? userRequestData['pick_lat']
+              : addressList
+              .firstWhere((e) => e.type == 'pickup')
+              .latlng
+              .latitude,
+          'pick_lng': (userRequestData.isNotEmpty)
+              ? userRequestData['pick_lng']
+              : addressList
+              .firstWhere((e) => e.type == 'pickup')
+              .latlng
+              .longitude,
+          'drop_lat': (userRequestData.isNotEmpty)
+              ? userRequestData['drop_lat']
+              : addressList
+              .lastWhere((e) => e.type == 'drop')
+              .latlng
+              .latitude,
+          'drop_lng': (userRequestData.isNotEmpty)
+              ? userRequestData['drop_lng']
+              : addressList
+              .lastWhere((e) => e.type == 'drop')
+              .latlng
+              .longitude,
+          'ride_type': 1,
+        })
+            : (dropStopList.isNotEmpty &&
+            addressList
+                .where((element) => element.type == 'drop')
+                .isNotEmpty)
+            ? jsonEncode({
+          'pick_lat': (userRequestData.isNotEmpty)
+              ? userRequestData['pick_lat']
+              : addressList
+              .firstWhere((e) => e.type == 'pickup')
+              .latlng
+              .latitude,
+          'pick_lng': (userRequestData.isNotEmpty)
+              ? userRequestData['pick_lng']
+              : addressList
+              .firstWhere((e) => e.type == 'pickup')
+              .latlng
+              .longitude,
+          'drop_lat': (userRequestData.isNotEmpty)
+              ? userRequestData['drop_lat']
+              : addressList
+              .lastWhere((e) => e.type == 'drop')
+              .latlng
+              .latitude,
+          'drop_lng': (userRequestData.isNotEmpty)
+              ? userRequestData['drop_lng']
+              : addressList
+              .lastWhere((e) => e.type == 'drop')
+              .latlng
+              .longitude,
+          'stops': jsonEncode(dropStopList),
+          'ride_type': 1,
+        })
+            : jsonEncode({
+          'pick_lat': (userRequestData.isNotEmpty)
+              ? userRequestData['pick_lat']
+              : addressList
+              .firstWhere((e) => e.type == 'pickup')
+              .latlng
+              .latitude,
+          'pick_lng': (userRequestData.isNotEmpty)
+              ? userRequestData['pick_lng']
+              : addressList
+              .firstWhere((e) => e.type == 'pickup')
+              .latlng
+              .longitude,
+          'ride_type': 1,
+        }));
+
+    if (response.statusCode == 200) {
+      driverDetails = jsonDecode(response.body)['data'];
+
+      choosenVehicle = (driverDetails
+          .where((element) => element['is_default'] == true)
+          .isNotEmpty)
+          ? driverDetails.indexWhere((element) => element['is_default'] == true)
           : 0;
       result = true;
       valueNotifierBook.incrementNotifier();
@@ -1575,7 +1695,113 @@ createRequest() async {
   }
   return result;
 }
+createProRequest() async {
+  dynamic result;
+  try {
+    var response = await http.post(Uri.parse('${url}api/v1/request/create'),
+        headers: {
+          'Authorization': 'Bearer ${bearerToken[0].token}',
+          'Content-Type': 'application/json',
+        },
+        body: (addressList
+            .where((element) => element.type == 'drop')
+            .isNotEmpty)
+            ? jsonEncode({
+          'pick_lat': addressList
+              .firstWhere((e) => e.type == 'pickup')
+              .latlng
+              .latitude,
+          'pick_lng': addressList
+              .firstWhere((e) => e.type == 'pickup')
+              .latlng
+              .longitude,
+          'drop_lat': addressList
+              .lastWhere((e) => e.type == 'drop')
+              .latlng
+              .latitude,
+          'drop_lng': addressList
+              .lastWhere((e) => e.type == 'drop')
+              .latlng
+              .longitude,
+          'vehicle_type': driverDetails[choosenVehicle]['zone_type_id'],
+          'ride_type': 1,
+          'payment_opt': (driverDetails[choosenVehicle]['payment_type']
+              .toString()
+              .split(',')
+              .toList()[payingVia] ==
+              'card')
+              ? 0
+              : (driverDetails[choosenVehicle]['payment_type']
+              .toString()
+              .split(',')
+              .toList()[payingVia] ==
+              'cash')
+              ? 1
+              : 2,
+          'pick_address':
+          addressList.firstWhere((e) => e.type == 'pickup').address,
+          'stops': jsonEncode(dropStopList),
+          'drop_address':
+          addressList.lastWhere((e) => e.type == 'drop').address,
+          'request_eta_amount': driverDetails[choosenVehicle]['total']
+        })
+            : jsonEncode({
+          'pick_lat': addressList
+              .firstWhere((e) => e.type == 'pickup')
+              .latlng
+              .latitude,
+          'pick_lng': addressList
+              .firstWhere((e) => e.type == 'pickup')
+              .latlng
+              .longitude,
+          'vehicle_type': driverDetails[choosenVehicle]['zone_type_id'],
+          'ride_type': 1,
+          'payment_opt': (driverDetails[choosenVehicle]['payment_type']
+              .toString()
+              .split(',')
+              .toList()[payingVia] ==
+              'card')
+              ? 0
+              : (driverDetails[choosenVehicle]['payment_type']
+              .toString()
+              .split(',')
+              .toList()[payingVia] ==
+              'cash')
+              ? 1
+              : 2,
+          'pick_address':
+          addressList.firstWhere((e) => e.type == 'pickup').address,
+          'request_eta_amount': driverDetails[choosenVehicle]['total']
+        }));
 
+    if (response.statusCode == 200) {
+      userRequestData = jsonDecode(response.body)['data'];
+      streamRequest();
+      result = 'success';
+
+      valueNotifierBook.incrementNotifier();
+    } else if (response.statusCode == 401) {
+      result = 'logout';
+    } else {
+      debugPrint(response.body);
+      if (jsonDecode(response.body)['message'] == 'no drivers available') {
+        noDriverFound = true;
+      } else {
+        tripReqError = true;
+      }
+
+      result = 'failure';
+      valueNotifierBook.incrementNotifier();
+    }
+  } catch (e) {
+    if (e is SocketException) {
+      internet = false;
+      result = 'no internet';
+      valueNotifierBook.incrementNotifier();
+    }
+  }
+  return result;
+}
 //create request with promo code
 
 createRequestWithPromo() async {
